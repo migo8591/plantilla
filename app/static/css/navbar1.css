@@ -44,3 +44,6 @@
     line-height: 50px;
     text-transform: uppercase;
 }
+.open-menu, .cerrar-menu{
+    display:none;
+}

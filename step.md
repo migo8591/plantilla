@@ -30,5 +30,7 @@ space-between (jc). Aplicar un padding de 10px para que los elementos "tenga air
 1. A la clase topheader se debe aplicar los estilos: position: fixed; left: 0; top: 0;
 2. Para recuperar el ancho de la barra: width: 100%
 ### Diseño para dispositivos mobiles: (26:50)
+1. Agregar las imagenes de "hamburguesa" y "cerrar" dentro etiquetas de botones con las clases "open-menu", "close-menu" y arias-labels "Abrir menú", "Cerrar menu". respectivamente.
+2. En dispositivos de escritorio estos botones no se tiene que ver: agregar la propiedad css display: none. (29:09)
 
 https://unedcr-my.sharepoint.com/personal/miguel_munoz_uned_cr/_layouts/15/stream.aspx?id=%2Fpersonal%2Fmiguel%5Fmunoz%5Funed%5Fcr%2FDocuments%2F1%2FvideosMyFirstWebCV%2Fparte%201%5F%20Barra%20de%20navegaci%C3%B3n%20usando%20flexbox%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ea144b25f%2Da81a%2D4339%2D92a8%2Dc1a3477c11b3
