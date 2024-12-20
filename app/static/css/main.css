@@ -1,7 +1,24 @@
 :root{
     --color-background: rgb(165, 155, 155);
-    
+    --theme-color: white;
+    --text-color: black;
+    --primary-color: #124f88;
+    --secondary-color: #F7C331;
+    --navbar-shallow-color: #e5e5e5;
+    /* --menu-mobile-background-color: #333 */
+
 }
-body{
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900 */
+body {
     background: var(--color-background);
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding-top: 80px;
+}
+a{
+    text-decoration: none;
+    color: var(--text-color)
 }

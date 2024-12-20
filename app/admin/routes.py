@@ -3,5 +3,5 @@ from . import admin
 
 
 @admin.route('/users/')
-def home():
+def users():
     return render_template('admin/users.html')
