@@ -1,0 +1,13 @@
+.content{
+    background-color: var(--body-website-color);
+    max-width: 980px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    box-shadow: 2px 4px 5px var(--navbar-shallow-color);
+}
+
+.title{
+    color: var(--title-text-color);
+    text-align: center;
+}

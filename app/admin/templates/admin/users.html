@@ -8,8 +8,32 @@
 
 
 {% block content%}
-<div class="main">
-            <h2 class="title3">Users</h2>
+<section class="content">
+    <h2 class="title">Users</h2>
+    <div class="usuarios">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Fecha de creacion</th>
+            </tr>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario.id}}</td>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellido}}</td>
+                <td>{{usuario.correo}}</td>
+                <td>{{usuario.contrasena}}</td>
+                <td>{{usuario.date_added}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
 
-</div>
 {% endblock %}
+
+<!-- https://www.w3schools.com/html/html_tables.asp -->

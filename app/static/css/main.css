@@ -6,13 +6,23 @@
     --primary-color: #124f88;
     --secondary-color: #F7C331;
     --navbar-shallow-color: #e5e5e5;
-    --menu-mobile-bc-color: #3A4460
-
+    --menu-mobile-bc-color: #3A4460;
+    /* own color */
+    --navbar-bc-color:#66bfbf;
+    --background-website-color:#eaf6f6;
+    --body-website-color:#FFF4F1;
+    --bc-form-color:#FFB3AE;
+    --bc-border-color:#FFC24B;
+    --nav-links-color:#FFC24B;
+    /* --title-text-color: #0E606B */
+    --title-text-color: #F47068
+    /* palettes: https://www.shecodes.io/palettes/1293 */
+    /* palettes: https://coolors.co/palette/f47068-ffb3ae-fff4f1-1697a6-0e606b-ffc24b*/
 }
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900 */
 body {
-    background: var(--color-background);
+    background: var(--background-website-color);
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;

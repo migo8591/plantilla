@@ -1,14 +1,66 @@
 {% extends "base.html" %}
-
 {% block title %}Sign up{% endblock %}
 
+{% block customCSS %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/auth/signup.css')}}">
+{% endblock %}
 
 {% block content %}
 
-<div class="main">
-            <h2>Sign up</h2>
-
-</div>
-
+<section class="content">
+  <h2 class="title">Sign up</h2>
+  <div class="formulario">
+    {% if error %}
+    <p style="color: red">{{ error }}</p>
+    {% endif %}
+    <form action="" method="post" novalidate>
+      {{form.hidden_tag()}}
+      <div>
+        <div class="formulario-name">
+          <label>
+            {{ form.name.label }}
+          </label>
+          {{ form.name(size=10) }}
+          <label>
+            {{ form.lastname.label }}
+          </label>
+          {{ form.lastname(size=30) }}
+        </div>
+        <p>
+          {% for error in form.name.errors %}
+          <span style="color: red">{{ error }}</span>
+          {% endfor %}
+        </p>
+      </div>
+      <div>
+        <div class="formulario-email">
+          <label>
+            {{ form.email.label }}
+          </label>
+          {{ form.email(size=59) }}
+        </div>
+        <p>
+          {% for error in form.email.errors %}
+          <span style="color: red">{{ error }}</span>
+          {% endfor %}
+        </p>
+      </div>
+      <div>
+        <div class="formulario-password">
+          <label>
+            {{ form.password.label }}
+          </label>
+          {{ form.password(size=20) }}
+        </div>
+        <p>
+          {% for error in form.password.errors %}
+          <span style="color: red">{{ error }}</span>
+          {% endfor %}
+        </p>
+      </div>
+      <div>{{ form.submit() }}</div>
+    </form>
+  </div>
+</section>
 
 {% endblock %}
