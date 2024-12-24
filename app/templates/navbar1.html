@@ -1,27 +1,24 @@
-{% block customCSS%}
-<link rel="stylesheet" href="{{url_for('static',filename='css/navbar1.css')}}">
 
-{%endblock%}
-
-
+{% block content %}
 <header class="topheader">
     <nav class="topnav">
         <a href="{{url_for('public.home')}}" class="logo">
             <img height="50" width="50" src="../static/img/peresozo.jpg" alt="peresozo">
             <div>Enseñanza de la Matemática <br> en Costa Rica</div>
         </a>
-        <buttton class="open-menu" aria-label="Abrir menú">
-            <img src="../static/img/icons8-menu.svg" alt="abrir menu">
-        </buttton>
-        <buttton class="cerrar-menu" aria-label="Cerrar menú">
-            <img src="../static/img/icons8-close.svg" alt="cerrar menu">
+        <buttton class="open-menu abrir-menu" aria-label="Abrir menú">
+            <img src="../static/img/hamburger-icon.svg" alt="abrir menu">
         </buttton>
         <ul class="menu">
+            <buttton class="close-menu cerrar-menu" aria-label="Cerrar menú">
+                <img src="../static/img/close-icon.svg" alt="cerrar menu">
+            </buttton>
             <li><a href="#">Infographic</a></li>
             <li><a href="{{url_for('public.aboutus')}}">About us</a></li>
-            <li><a href="{{url_for('admin.users')}}">Admin</a></li>
-            <li><a href="{{url_for('auth.signup')}}">Sign in</a></li>
+            <li><a href="{{url_for('admin.users')}}" >Admin</a></li>
+            <li><a href="{{url_for('auth.signup')}}" >Sign in</a></li>
             <li><a href="{{url_for('auth.login')}}">Login </a></li>
         </ul>
     </nav>
 </header>
+{%endblock%}

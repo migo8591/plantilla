@@ -2,10 +2,11 @@
     --color-background: rgb(165, 155, 155);
     --theme-color: white;
     --text-color: black;
+    --text-color-inverse:white;
     --primary-color: #124f88;
     --secondary-color: #F7C331;
     --navbar-shallow-color: #e5e5e5;
-    /* --menu-mobile-background-color: #333 */
+    --menu-mobile-bc-color: #3A4460
 
 }
 /* // <uniquifier>: Use a unique and descriptive class name

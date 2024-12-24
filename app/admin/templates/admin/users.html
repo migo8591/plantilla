@@ -1,18 +1,15 @@
-{% extends "body.html" %}
+{% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {%block customCSS%}
 <link rel="stylesheet" href="{{url_for('static', filename='css/admin/users.css')}}">
 {%endblock%}
 
 
-{% block container%}
-
+{% block content%}
 <div class="main">
             <h2 class="title3">Users</h2>
 
 </div>
-
-
 {% endblock %}

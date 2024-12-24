@@ -1,12 +1,12 @@
-{% extends "body.html" %}
+{% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Login {% endblock %}
 
 {%block customCSS%}
 <link rel="stylesheet" href="{{url_for('static', filename='css/auth/login.css')}}">
 {%endblock%}
 
-{% block container%}
+{% block content %}
 
 <div class="main">
             <h2 class="title2">Login</h2>

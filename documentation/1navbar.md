@@ -1,4 +1,6 @@
-# Configuraciones generales: 
+# Parte I: Navbar
+
+## Configuraciones generales: 
 1. Utilizar etiqueta header para englobar el navbar con una clase "topheader".
 2. Utilizar un segundo englobe con la etiqueta nav con una clase "topnav".
 3. Para el logo: crear un enlace (&lt;a&gt;) con la clase logo dentro de este enlace van a ir 1° la imagen con height de 50 y width de 50 y 2° un div con el titulo del sitio.
@@ -10,27 +12,27 @@
     2. Copiar el link correspondiente y pegar en visualStudio después de la etiqueta title.
 8. Resetear los enlaces a none y agregar color
 9. :root es un selector generico es igual a utilizar html en css.
-# Creando la barra de navegación: 
+## Creando la barra de navegación: 
 1. en navbar.css a la clase topnav aplicar display: flex (df) con justify-content: 
 space-between (jc). Aplicar un padding de 10px para que los elementos "tenga aire" con respecto a la ventana (espacio)
-## Para el logo: 
+### Para el logo: 
 2. para que la imagen y el nombre de la pagina esten en horizontal aplicar display:flex y align-items: center;
 3. aplicar otros estilos como font-size, font-weight y color
 4. Para redondear la imagen: .logo img {border-radius:50%}
-## Para el menu:
+### Para el menu:
 1. Utilizar la clase menu y aplicar los estilos: display: flex, list-style: none (para quitar el punto), resetear el margin y el padding a cero, 
 2. aplicar a la etiqueta li: padding: 0;
 3. aplicar a la etiqueta a: color, font-size, font-weight, line-height (una forma de central el texto de forma horizontal)
-## Para agregar una sombra a la barra:
+### Para agregar una sombra a la barra:
 1. a la clase topheader agregar el estilo box-shadow  0 4px 5 px #xxx (ejeX, ejeY, blur, color)
-## Para evitar un ancho maximo:
+### Para evitar un ancho maximo:
 1. Para lograr un tope: en la clase .topnav agregar el estilo max-width de 980px
 2. Y para que este centrado con respecto al header: margin 0 auto; (margin: ⮁ ⇄)
-## Para fijar la barra (navbar): 
+### Para fijar la barra (navbar): 
 1. A la clase topheader se debe aplicar los estilos: position: fixed;("que se quede fijado la posición del header con respecto al viewport... viewport es todo lo que vemos en nuestra pagina web")para evitar complicaciones: left: 0; top: 0; (ya que si se le aplica un margin  al contenido se va ir para la 💩  )
 2. Aplicar un color al navbar.
 3. Para recuperar el ancho de la barra: width: 100%
-### Diseño para dispositivos mobiles: (26:50)
+## Diseño para dispositivos mobiles: (26:50)
 1. Agregar las imagenes de "hamburguesa" y "cerrar" dentro etiquetas de botones con las clases "open-menu", "close-menu" y arias-labels "Abrir menú", "Cerrar menu". respectivamente.
 2. El boton de hamburguesa debe estar afuera de la lista &lt;ul&gt; y el boton de cerrar debe estar adentro de la lista &lt;ul&gt;
 
@@ -54,7 +56,7 @@ Para dispositivos con un ancho menor de 950px se aplica background-color: blue. 
 9. No es necesario que los items tenga padding por eso aplicar padding de cero a la clase .menu li{...}
 10. Para que el menu agarre todo el alto del dispositivo es necesario aplicar un height: 100%, a la clase .menu.
 11. Para poner una barra automatica para hacer scroll esto cuando la pantalla es pequeña o tiene demasiado zoom aplicar overflow-y: auto a la clase .menu.
-## Interacción con los botones de burger and close.
+### Interacción con los botones de burger and close.
 1. Se necesita que cuando estemos en mobiles el display sea block
 2. Aplicar al boton de "cerrar"la propiedad align-self: flex-end; 
 3. Aplicar a ambos botones las siguientes propiedades: border:none; background-color: none; cursor:pointer;
@@ -75,19 +77,4 @@ Para dispositivos con un ancho menor de 950px se aplica background-color: blue. 
 8. Para añadir una pequeña transición: en la clase ".menu" del @media query utilizar la propiedad transition: opacity 0.3s; (transiciona el opacity a 0.1s)
 
 
-
-
-
-
-https://unedcr-my.sharepoint.com/personal/miguel_munoz_uned_cr/_layouts/15/stream.aspx?id=%2Fpersonal%2Fmiguel%5Fmunoz%5Funed%5Fcr%2FDocuments%2F1%2FvideosMyFirstWebCV%2Fparte%201%5F%20Barra%20de%20navegaci%C3%B3n%20usando%20flexbox%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ea144b25f%2Da81a%2D4339%2D92a8%2Dc1a3477c11b3
-
-
-https://www.youtube.com/watch?v=ADbxRybIpH0&list=PL9T-KKyKXNClKYVq2vwjIXzn9wyNs3XtC&ab_channel=YoelvisMulen%7Bcode%7D
-
-
-Misma pagina utilizando html puro:
-"C:\Users\mcate\OneDrive - Universidad Estatal a Distancia\zRespaldo\flashDrive\landing Page Yoel\respaldo\landinPage_own"
-
-
-Utilizando ayuda de chatGPT:
-https://chatgpt.com/share/672e2279-760c-800d-97a0-ee062fd55337
+[Volver al Indice](index.md)
