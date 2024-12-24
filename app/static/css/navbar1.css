@@ -7,7 +7,7 @@
     left: 0;
     top: 0;
     width: 100%;
-    background-color: var(--theme-color);
+    background-color: var(--navbar-bc-color);
 }
 .topnav{
     display: flex;
