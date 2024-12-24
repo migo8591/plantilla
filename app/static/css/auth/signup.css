@@ -1,0 +1,33 @@
+.formulario{
+    background-color:var(--bc-form-color);
+    border: 3px solid var(--bc-border-color);
+    width: 600px;
+    height: 260px;
+    padding: 40px 30px;
+    margin: 0 auto;
+}
+
+.formulario-name{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+
+}
+/* .formulario-name, label{
+    margin-right: 3px;
+} */
+.formulario-email{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+
+.formulario-password{
+    width: 290px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}

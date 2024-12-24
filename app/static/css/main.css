@@ -10,9 +10,14 @@
     /* own color */
     --navbar-bc-color:#66bfbf;
     --background-website-color:#eaf6f6;
-    --body-website-color:#fcfefe;
-    --title-text-color: #f76b8a
+    --body-website-color:#FFF4F1;
+    --bc-form-color:#FFB3AE;
+    --bc-border-color:#FFC24B;
+    --nav-links-color:#FFC24B;
+    /* --title-text-color: #0E606B */
+    --title-text-color: #F47068
     /* palettes: https://www.shecodes.io/palettes/1293 */
+    /* palettes: https://coolors.co/palette/f47068-ffb3ae-fff4f1-1697a6-0e606b-ffc24b*/
 }
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900 */
