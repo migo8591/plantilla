@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_login import LoginManager
 from .public import public
 from .auth import auth
 from .admin import admin
