@@ -39,7 +39,7 @@
 .menu li{
     padding: 0 15px;
 }
-.menu a{
+.menu a, .welcome{
     color: var(--nav-links-color);
     font-size: 18px;
     font-weight: 700;
