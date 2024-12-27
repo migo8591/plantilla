@@ -30,11 +30,14 @@ def signup():
                 correo=email,
                 contrasena=password
                 )
+            print(user.contrasena)
             user.set_password(password)
+            print(user.contrasena)
             user.save()
             # Dejamos al usuario logueado
             login_user(user, remember=True)
             next_page = request.args.get('next', None)
+            print(f'Next_page = {next_page}')
             if not next_page or urlparse (next_page).netloc != '':
                 next_page = urlparse('public.index')
         flash("User added successfully")

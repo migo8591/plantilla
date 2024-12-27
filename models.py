@@ -26,4 +26,8 @@ class Users(db.Model, UserMixin):
         return Users.query.get(id)
     @staticmethod
     def get_by_email(correo):
-        return Users.query.get(correo)
+        # return Users.query.get(correo)
+        return Users.query.filter_by(correo=correo).first()
+
+
+# Intenta buscar un usuario por su correo electrónico. Nota: Parece que hay un error en esta línea. query.get busca por clave primaria, pero aquí se busca por correo. Lo correcto sería usar filter_by: return Users.query.filter_by(correo=correo).first()
