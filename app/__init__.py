@@ -4,7 +4,7 @@ from .public import public
 from .auth import auth
 from .admin import admin
 from extensions import db
-from models import Users
+from app.auth.models import Users
 
 def create_app(config_class):
     app = Flask(__name__)

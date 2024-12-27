@@ -1,4 +1,4 @@
-# Login de usuarios en flask
+# Sign up de usuarios en flask
 
 * How to authenticate users in flask with flask-login. 
 https://www.freecodecamp.org/news/how-to-authenticate-users-in-flask/
@@ -49,3 +49,5 @@ def logout():
 @login_required
 ~~~
 9. Mostrando la info del usuario logueado en las plantillas
+
+[Volver al Indice](index.md)

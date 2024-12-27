@@ -4,7 +4,9 @@
 2. [Implementando sections.](2sections.md)
 3. [Creando formularios.](3formularios.md)
 4. [Instalando una base de datos.](4database.md)
-5. 
+5. [Sign up de usuarios en flask.](5signup.md)
+6. [Login de usuarios en flask.](6login.md)
+7. 
 10. [Bibliografia](10bibliografia.md)
 
 <img src="img/enzito.jpg" width="300" height="300" margin="50 50"/>

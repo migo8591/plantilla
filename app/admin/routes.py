@@ -1,6 +1,6 @@
 from flask import abort, render_template
 from . import admin
-from models import Users
+from app.auth.models import Users
 
 
 @admin.route('/users/')
