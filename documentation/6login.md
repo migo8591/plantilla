@@ -12,7 +12,11 @@
     6. Checkear las credenciales
     6. Utilizar user en login_user()
     7. Utilizar el arg "next"
-
+4. Importar: "from flask_login import login_required" y utilizar "@login_required"
+5. Utilizar "login_manager.login_view = 'auth.login'".
+    1. Personalizando el login
+    
+    Si no queremos que la aplicación muestre un error 401 cuando un usuario intenta acceder a una vista protegida, hay que personalizar el objeto login_manager. En este caso, lo que haremos será indicarle cuál es la vista para realizar el login.
 
 <code>
 @auth_bp.route('/login', methods=['GET', 'POST'])
@@ -147,4 +151,5 @@ False
 set() (conjunto vacío)
 En resumen, si next_page es None, su negación (not next_page) será True porque None es un valor "falsy".
 
+La cague
 https://chatgpt.com/share/676f236a-9a8c-800d-84eb-e29e2dcea60d
