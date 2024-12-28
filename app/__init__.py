@@ -8,7 +8,6 @@ from app.auth.models import Users
 
 def create_app(config_class):
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog_educativo.db"
     app.config.from_object(config_class)
     app.register_blueprint(public)
     app.register_blueprint(auth)

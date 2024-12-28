@@ -64,7 +64,45 @@ Una vez abierto, verás el prompt de SQLite (sqlite>), donde puedes ejecutar con
 <img src="img/table.png" width="800" height="150" margin="50 50"/>
 
 ## Instalando MySQL:
-1. xxx
-2. mmm
+1. repositorio: https://github.com/PyMySQL/mysqlclient?tab=readme-ov-file
+2. instalar: $ pip install mysqlclient
+3. app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:pl4n3TaJupiter@localhost/blogCuatro"
+
+### Utilizando MySQL desde CMD: 
+1. Abrir CMD
+2. Ir al explorador de archivo para buscar la ruta donde se esta ejecutando MySQL:
+C/archivosDePrograma/MySQL/MySQLServer8.0/bin/ (copiar toda esta ruta)
+3. Volver a la CMD: cd path
+4. mysql -uroot -p (-u: usuario, -p: password)
+5. Para ver todas las bases de datos: <br>
+SHOW DATABASES;
+6. Para crear una base: <br>
+CREATE DATABASE xxx;
+7. Para utilizar la base creada: <br>
+USE xxx;
+8. Para ver las tablas que tiene disponible xxx:<br>
+SHOW TABLES;
+9. Para crear una tabla:<br>
+CREATE TABLE user(id, nombre varchar(120), description text);
+10. Para ver los datos que tiene la tabla:
+SELECT * from user;<br>
+Otra opción: SELECT * FROM nombre_tabla\G
+11. 
+12. 
+13. 
+14. exit;
+
+
+
+
+### Variable de entorno para MySQL:
+
+
+
+
+* Tomado desde LinkedIn_MySQL_esencial: <br>
+https://unedcr-my.sharepoint.com/personal/miguel_munoz_uned_cr/_layouts/15/stream.aspx?id=%2Fpersonal%2Fmiguel%5Fmunoz%5Funed%5Fcr%2FDocuments%2F1%2Fvideos%5FLinkedIn%5FDev%2Fothers%5FCourse%2FCourse%5FLinkedIn%2FLinkedIn%5FMySQL%5Fesencial%2F1%2D2%2D3MySQL%20%5Fesencial%5F1%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Efbf55147%2D9c44%2D4173%2Db5d0%2D41605fc2c395
+
+
 
 [Volver al Indice](index.md)
