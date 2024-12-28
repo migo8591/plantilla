@@ -2,3 +2,16 @@
     color:rgb(15, 102, 12);
     text-align: center;
 }
+
+.special{
+    /* text-decoration: underline; */
+    color: blue;
+
+}
+
+/* a:not(.special){
+    text-decoration: none;
+    color: var(--text-color);
+} 
+https://www.w3schools.com/cssref/sel_not.php    
+*/

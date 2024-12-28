@@ -88,3 +88,8 @@ for customer in customers:
 #         credito = False
 # else:
 #     is_credito = input("¿Es cliente de credito? (S/N): ")
+
+
+# codigo facilito:
+    
+# https://unedcr-my.sharepoint.com/personal/miguel_munoz_uned_cr/_layouts/15/stream.aspx?id=%2Fpersonal%2Fmiguel%5Fmunoz%5Funed%5Fcr%2FDocuments%2F1%2Fvideos%5FLinkedIn%5FDev%2Fothers%5FCourse%2FcodigoFacilito%2Ftienda%5FFlask%5FcodigoFacilito%2F3%5FMi%5Fprimera%5Fapp%5Fflask%5F24%2D32%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E776f4f2d%2D9552%2D4725%2Da875%2D654a6e4f6e4f
