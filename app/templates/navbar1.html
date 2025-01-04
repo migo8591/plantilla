@@ -1,5 +1,5 @@
 
-{% block content %}
+
 <header class="topheader">
     <nav class="topnav">
         <a href="{{url_for('public.home')}}" class="logo">
@@ -14,11 +14,17 @@
                 <img src="../static/img/close-icon.svg" alt="cerrar menu">
             </buttton>
             <li><a href="#">Infographic</a></li>
+            <li><a href="{{url_for('admin.postform')}}">Post</a></li>
             <li><a href="{{url_for('public.aboutus')}}">About us</a></li>
             <li><a href="{{url_for('admin.users')}}" >Admin</a></li>
+            {% if current_user.is_anonymous %}
             <li><a href="{{url_for('auth.signup')}}" >Sign in</a></li>
             <li><a href="{{url_for('auth.login')}}">Login </a></li>
+            {% else %}
+            <li>{{ current_user.name }}</li>
+            <!-- <li class="welcome">Welcome, <span id="user">{{current_user.nombre}}</span></li> -->
+            <li><span class="menu-user">Welcome, {{current_user.nombre}}</span><a href="{{ url_for('auth.logout') }}"> | Logout</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>
-{%endblock%}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h2 class="title">{{post.title}}</h2>
+    <p class="content-text">
+        {{ post.content }}
+    </p>
+</section>
+{% endblock %}
+
+<!-- Formas de respectar espacios en blanco en html
+https://www.w3schools.com/html/html_entities.asp -->
+<!-- https://chatgpt.com/share/6779261e-dc44-800d-abf5-ea522cc2ce60 -->
+<!-- git checkout tags/leccion1 -b leccion1 -->
