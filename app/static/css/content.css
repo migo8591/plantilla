@@ -12,3 +12,15 @@
     color: var(--title-text-color);
     text-align: center;
 }
+.special{
+    /* text-decoration: underline; */
+    color: blue;
+
+}
+.content-text{
+    color: var(--text-color);
+    text-align: center;
+    margin-top: 20px;
+    white-space: pre-wrap;
+
+}

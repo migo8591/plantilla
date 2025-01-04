@@ -10,19 +10,15 @@
 
 <section class="content">
     <h2 class="title">Maths Topics</h2>
-    <!-- <p>{{ num_posts }} posts</p> -->
+
     <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
     <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
-    <ul>
-    {% for post in posts %}
-        <li><a href="{{ post.public_url() }}">{{ post.title }}</a></li>
-    {% endfor %}
+    <ul class="content-posts">
+        {% for post in posts %}
+        <li>
+            <a href="{{post.public_url()}}" class="special">{{post.id}}. {{ post.title }}</a>
+        </li>
+        {% endfor %}
     </ul>
-
 </section>
-
-
-
-
-
 {% endblock %}
