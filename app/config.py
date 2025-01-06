@@ -18,17 +18,18 @@ class ProductionConfig(Config):
      SQLALCHEMY_DATABASE_URI= f"mysql://{user}:{password}@{host}:{port}/{database}"
     
 class DevelopmentConfig(Config):
-    DEBUG = True  # Activa el modo depuración
+    # DEBUG = True  # Activa el modo depuración
     SQLALCHEMY_DATABASE_URI = "sqlite:///blog_educativo.db"
 class TestingConfig(Config):
     pass
-# class TestingConfig(Config):
-#     DEBUG = True  # Activa el modo depuración
-#     TESTING=True
+class TestingConfig(Config):
+    DEBUG = True  # Activa el modo depuración
+    SQLALCHEMY_DATABASE_URI = "sqlite:///blog_educativo.db"
+    # TESTING=True
     
 config = {
     'development': DevelopmentConfig,
     'production':ProductionConfig,
-    'default': DevelopmentConfig
+    'testing': TestingConfig
     
 }
