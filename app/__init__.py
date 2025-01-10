@@ -11,15 +11,6 @@ from extensions import db
 from app.auth.models import Users
 
 
-
-
-
-
-
-
-
-
-
 def create_app(config_class):
     app = Flask(__name__)
     app.config.from_object(config_class)
@@ -64,15 +55,38 @@ def configure_logging(app):
     del app.logger.handlers[:]
 
     # Añadimos el logger por defecto a la lista de loggers
-    loggers = [app.logger, ]
+    loggers = [app.logger, logging.getLogger('sqlalchemy')]
     handlers = []
 
     # Creamos un manejador para escribir los mensajes por consola
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.DEBUG)
+    # console_handler.setLevel(logging.DEBUG) --> desaparece
     console_handler.setFormatter(verbose_formatter())
-    handlers.append(console_handler)
-
+    # handlers.append(console_handler) --> desaparece
+    
+    # Verificamos el entorno desde app.config['ENV'] 
+    env = app.config.get('ENV', 'production') #'production' como calor predeterminado.
+    # if env == 'development' or env == 'testing':
+    if env == 'development':
+        console_handler.setLevel(logging.DEBUG)
+        handlers.append(console_handler)
+    elif env == 'testing':
+        console_handler.setLevel(logging.INFO)
+        handlers.append(console_handler)
+    elif env == 'production':
+        console_handler.setLevel(logging.INFO)
+        handlers.append(console_handler)
+        # envio de correo electrónico en caso de error
+        mail_handler = SMTPHandler((app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
+                            app.config['DONT_REPLY_FROM_EMAIL'],
+                            app.config['ADMINS'],
+                            '[Error][{}] La aplicación falló'.format(app.config['APP_ENV']),
+                            (app.config['MAIL_USERNAME'],
+                            app.config['MAIL_PASSWORD']),
+                            ())
+        mail_handler.setLevel(logging.ERROR)
+        mail_handler.setFormatter(mail_handler_formatter())
+        handlers.append(mail_handler)
     # Asociamos cada uno de los handlers a cada uno de los loggers
     for l in loggers:
         for handler in handlers:
@@ -85,3 +99,20 @@ def verbose_formatter():
         '[%(asctime)s.%(msecs)d]\t %(levelname)s \t[%(name)s.%(funcName)s:%(lineno)d]\t %(message)s',
         datefmt='%d/%m/%Y %H:%M:%S'
     )
+# ///////////////////////////////////////////////////////////////////////////////////////////
+def mail_handler_formatter():
+    return logging.Formatter(
+        '''
+            Message type:       %(levelname)s
+            Location:           %(pathname)s:%(lineno)d
+            Module:             %(module)s
+            Function:           %(funcName)s
+            Time:               %(asctime)s.%(msecs)d
+
+            Message:
+
+            %(message)s
+        ''',
+        datefmt='%d/%m/%Y %H:%M:%S'
+    )
+    
