@@ -1,4 +1,4 @@
-from flask import abort, render_template
+from flask import abort, render_template, current_app
 from . import public
 from flask_login import login_required
 from app.admin.models import Post
@@ -8,6 +8,8 @@ from werkzeug.exceptions import NotFound
 @public.route('/')
 def home():
     posts = Post.get_all()
+    # current_app.logger.info("Posts: %s", posts)
+    current_app.logger.info("Mostrando todos los posts")
     return render_template('public/home.html', posts=posts)
 
 @public.route('/aboutus/')
