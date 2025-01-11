@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="content">
+        <p>Ooops!! No tienes permisos de acceso. </p>
+        <!-- <p>What you were looking for is just not there.</p> -->
+        <p>If you want to come back to page start. You can <a class="special" href="{{ url_for('public.home') }}">click</a> here.</p>
+
+    </section>
+
+{% endblock %}

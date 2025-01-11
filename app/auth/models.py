@@ -12,6 +12,8 @@ class Users(db.Model, UserMixin):
     correo= db.Column(db.String(200), nullable=False, unique=True)
     contrasena = db.Column(db.String(200), nullable=False)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    is_admin = db.Column(db.Boolean, default=False)
+    
     
     def set_password(self, contrasena):
         self.contrasena = generate_password_hash(contrasena)

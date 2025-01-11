@@ -9,7 +9,9 @@ from .auth import auth
 from .admin import admin
 from extensions import db
 from app.auth.models import Users
+from flask_migrate import Migrate
 
+migrate = Migrate()
 
 def create_app(config_class):
     app = Flask(__name__)
@@ -28,6 +30,7 @@ def create_app(config_class):
     app.register_blueprint(auth)
     app.register_blueprint(admin)
     db.init_app(app)
+    migrate.init_app(app, db)
     with app.app_context():
         db.create_all()
     login_manager = LoginManager()
@@ -49,6 +52,10 @@ def register_error_handlers(app):
     @app.errorhandler(404)
     def error_404_handler(e):
         return render_template('404.html'), 404
+    
+    @app.errorhandler(401)
+    def error_404_handler(e):
+        return render_template('401.html'), 401
 # ///////////////////////////////////////////////////////////////////////////////////////////
 def configure_logging(app):
     # Eliminamos los posibles manejadores, si existen, del logger por defecto
