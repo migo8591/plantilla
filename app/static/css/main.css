@@ -9,7 +9,8 @@
     --menu-mobile-bc-color: #3A4460;
     /* own color */
     --navbar-bc-color:#66bfbf;
-    --background-website-color:#eaf6f6;
+    /* --background-website-color:#eaf6f6; */
+    --background-website-color:red;
     --body-website-color:#FFF4F1;
     --bc-form-color:#FFB3AE;
     --bc-border-color:#FFC24B;
