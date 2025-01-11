@@ -67,10 +67,10 @@ def configure_logging(app):
     # Verificamos el entorno desde app.config['ENV'] 
     env = app.config.get('ENV', 'production') #'production' como calor predeterminado.
     # if env == 'development' or env == 'testing':
-    if env == 'development':
+    if env == 'testing':
         console_handler.setLevel(logging.DEBUG)
         handlers.append(console_handler)
-    elif env == 'testing':
+    elif env == 'development':
         console_handler.setLevel(logging.INFO)
         handlers.append(console_handler)
     elif env == 'production':
@@ -80,7 +80,7 @@ def configure_logging(app):
         mail_handler = SMTPHandler((app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
                             app.config['DONT_REPLY_FROM_EMAIL'],
                             app.config['ADMINS'],
-                            '[Error][{}] La aplicación falló'.format(app.config['APP_ENV']),
+                            '[Error][{}] La aplicación falló'.format(env),
                             (app.config['MAIL_USERNAME'],
                             app.config['MAIL_PASSWORD']),
                             ())
