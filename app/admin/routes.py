@@ -4,10 +4,12 @@ from app.auth.models import Users
 from .forms import PostForm
 from app.admin.models import Post
 from flask_login import current_user, login_required
-
+from app.auth.decorators import admin_required
 
 
 @admin.route('/users/')
+@login_required
+@admin_required
 def users():
     our_users = (Users.query.order_by(Users.date_added))
     return render_template('admin/users.html', usuarios = our_users)
