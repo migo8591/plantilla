@@ -9,7 +9,9 @@ from .auth import auth
 from .admin import admin
 from extensions import db
 from app.auth.models import Users
+from flask_migrate import Migrate
 
+migrate = Migrate()
 
 def create_app(config_class):
     app = Flask(__name__)
@@ -28,6 +30,7 @@ def create_app(config_class):
     app.register_blueprint(auth)
     app.register_blueprint(admin)
     db.init_app(app)
+    migrate.init_app(app, db)
     with app.app_context():
         db.create_all()
     login_manager = LoginManager()

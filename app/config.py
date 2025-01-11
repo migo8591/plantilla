@@ -28,11 +28,11 @@ class ProductionConfig(Config):
      ENV="production"    
 class DevelopmentConfig(Config):
     # DEBUG = True  # Activa el modo depuración
-    SQLALCHEMY_DATABASE_URI = "sqlite:///blog_educativo.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///blog_educativoII.db"
     ENV="development"
 class TestingConfig(Config):
     DEBUG = True  # Activa el modo depuración
-    SQLALCHEMY_DATABASE_URI = "sqlite:///blog_educativo.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///blog_educativoII.db"
     ENV="testing"
     # TESTING=True
     
