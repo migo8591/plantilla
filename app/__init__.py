@@ -6,7 +6,7 @@ from flask import Flask, render_template
 from flask_login import LoginManager, current_user
 from .public import public
 from .auth import auth
-from .admin import admin
+from .admin import admin_bp
 from extensions import db
 from app.auth.models import Users
 from flask_migrate import Migrate
@@ -28,7 +28,7 @@ def create_app(config_class):
     
     app.register_blueprint(public)
     app.register_blueprint(auth)
-    app.register_blueprint(admin)
+    app.register_blueprint(admin_bp)
     db.init_app(app)
     migrate.init_app(app, db)
     with app.app_context():

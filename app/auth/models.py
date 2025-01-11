@@ -23,6 +23,12 @@ class Users(db.Model, UserMixin):
         if not self.id:
             db.session.add(self)
         db.session.commit()
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    @staticmethod
+    def get_all():
+        return Users.query.all()
     @staticmethod
     def get_by_id(id):
         return Users.query.get(id)
