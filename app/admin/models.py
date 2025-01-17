@@ -46,9 +46,16 @@ class Post(db.Model):
                     db.session.add(self)
     def public_url(self):
         return url_for('public.show_post', slug=self.title_slug)
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
     @staticmethod
     def get_by_slug(slug):
         return Post.query.filter_by(title_slug=slug).first()
     @staticmethod
     def get_all():
         return Post.query.all()
+    @staticmethod
+    def get_by_id(id):
+        return Post.query.get(id)
+    

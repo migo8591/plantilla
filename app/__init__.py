@@ -1,6 +1,6 @@
 import logging
 from logging.handlers import SMTPHandler
-
+from colorama import Fore, Style, init
 
 from flask import Flask, render_template
 from flask_login import LoginManager, current_user
@@ -11,6 +11,7 @@ from extensions import db
 from app.auth.models import Users
 from flask_migrate import Migrate
 
+init(autoreset=True)
 migrate = Migrate()
 
 def create_app(config_class):
@@ -56,10 +57,11 @@ def register_error_handlers(app):
     @app.errorhandler(401)
     def error_404_handler(e):
         return render_template('401.html'), 401
-# ///////////////////////////////////////////////////////////////////////////////////////////
+# -----------------------------
 def configure_logging(app):
     # Eliminamos los posibles manejadores, si existen, del logger por defecto
     del app.logger.handlers[:]
+
 
     # Añadimos el logger por defecto a la lista de loggers
     loggers = [app.logger, logging.getLogger('sqlalchemy')]
@@ -75,6 +77,7 @@ def configure_logging(app):
     env = app.config.get('ENV', 'production') #'production' como calor predeterminado.
     # if env == 'development' or env == 'testing':
     if env == 'testing':
+        # console_handler.setLevel(logging.INFO)
         console_handler.setLevel(logging.DEBUG)
         handlers.append(console_handler)
     elif env == 'development':
@@ -100,13 +103,26 @@ def configure_logging(app):
             l.addHandler(handler)
         l.propagate = False
         l.setLevel(logging.DEBUG)
-# ///////////////////////////////////////////////////////////////////////////////////////////
+# --------------------------------
+def configure_color():
+        class ColoredFormatter(logging.Formatter):
+            COLORS = {
+                "DEBUG": Fore.CYAN,
+                "INFO": Fore.GREEN,
+            }
+            def format(self, record):
+                color = self.COLORS.get(record.levelname, "")
+                record.msg = f"{color}{record.msg}{Style.RESET_ALL}"
+                return super().format(record)
 def verbose_formatter():
+       
     return logging.Formatter(
         '[%(asctime)s.%(msecs)d]\t %(levelname)s \t[%(name)s.%(funcName)s:%(lineno)d]\t %(message)s',
         datefmt='%d/%m/%Y %H:%M:%S'
+        # '[%(asctime)s.%(msecs)d]\t %(levelname)s \t[%(name)s.%(funcName)s:%(lineno)d]\t %(message)s',
+        # datefmt='%d/%m/%Y %H:%M:%S'+ str(ColoredFormatter("[%(levelname)s] %(message)s"))
     )
-# ///////////////////////////////////////////////////////////////////////////////////////////
+# --------------------------------------
 def mail_handler_formatter():
     return logging.Formatter(
         '''
@@ -122,4 +138,10 @@ def mail_handler_formatter():
         ''',
         datefmt='%d/%m/%Y %H:%M:%S'
     )
+# ==================================================
+# Configuración Colorama
+# ==================================================
+
+
+# def configure_logging(app):
     

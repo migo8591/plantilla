@@ -7,16 +7,18 @@
             <div>Enseñanza de la Matemática <br> en Costa Rica</div>
         </a>
         <buttton class="open-menu abrir-menu" aria-label="Abrir menú">
-            <img src="../static/img/hamburger-icon.svg" alt="abrir menu">
+            <!-- <img src="../static/img/hamburger-icon.svg" alt="abrir menu"> -->
+            <img src="{{url_for('static',filename='img/hamburger-icon.svg')}}" alt="abrir menu">
         </buttton>
         <ul class="menu">
             <buttton class="close-menu cerrar-menu" aria-label="Cerrar menú">
-                <img src="../static/img/close-icon.svg" alt="cerrar menu">
+                <!-- <img src="../static/img/close-icon.svg" alt="cerrar menu"> -->
+                <img src="{{url_for('static',filename='img/close-icon.svg')}}" alt="abrir menu">
             </buttton>
             <li><a href="#">Infographic</a></li>
             <li><a href="{{url_for('admin.postform')}}">Post</a></li>
             <li><a href="{{url_for('public.aboutus')}}">About us</a></li>
-            <li><a href="{{url_for('admin.users')}}" >Admin</a></li>
+            <li><a href="{{url_for('admin.adminIndex')}}" >Admin</a></li>
             {% if current_user.is_anonymous %}
             <li><a href="{{url_for('auth.signup')}}" >Sign in</a></li>
             <li><a href="{{url_for('auth.login')}}">Login </a></li>

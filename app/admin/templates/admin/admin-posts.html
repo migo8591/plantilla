@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+
+{% block title %}Admin | List Posts{% endblock %}
+
+{%block customCSS%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin/admin-posts.css')}}">
+{%endblock%}
+
+
+{% block content %}
+<section class="content">
+    <div>
+        <a class="special" href="{{url_for("admin.postform")}}">Add post</a>
+    </div>
+    <h2 class="title">List of posts</h2>
+    <div class="content-posts">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Titulo</th>
+                <th>Usuario</th>
+                <th>Fecha creacion</th>
+            </tr>
+            {% for post in posts %}
+            <tr>
+                <td>{{post.id}}</td>
+                <td>
+                    <a href="{{url_for('admin.view_post',post_id=post.id)}}" class="special">{{post.title}}</a>
+                </td>
+                <td>{{post.user_id}}</td>
+                <td>
+                    {{post.user_id}}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+
+
+    
+</section>
+
+{% endblock %}
+<!-- <li>
+    <a class="special" href="{{url_for("admin.editPost",post_id=post.id)}}">{{post.title}}</a>
+</li> -->
