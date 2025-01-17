@@ -17,7 +17,8 @@
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Email</th>
-                <th>Admin</th>
+                <!-- <th>Admin</th> -->
+                <th>Editar</th>
                 <!-- <th>Password</th> -->
                 <th>Fecha de creacion</th>
             </tr>
@@ -27,9 +28,11 @@
                 <td>{{usuario.nombre}}</td>
                 <td>{{usuario.apellido}}</td>
                 <td>{{usuario.correo}}</td>
-                <td>{{usuario.is_admin}}</td>
+                <!-- <td>{{usuario.is_admin}}</td> -->
                 <!-- <td>{{usuario.contrasena}}</td> -->
+                <td><a class="special" href="{{url_for('admin.updateUserForm', user_id=usuario.id)}}">{{usuario.is_admin}}</a></td>
                 <td>{{usuario.date_added}}</td>
+            
             </tr>
             {% endfor %}
         </table>

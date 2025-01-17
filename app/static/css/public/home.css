@@ -4,5 +4,9 @@
 } */
 
 .content-posts{
-    list-style:none
+    list-style:decimal;
+}
+
+.content-posts li{
+    padding-bottom: 10px;
 }

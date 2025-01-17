@@ -3,15 +3,18 @@ from flask import url_for
 from extensions import db
 from sqlalchemy.exc import IntegrityError
 from colorama import Fore, Back, Style, init
+from datetime import datetime
+
 
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
-    # user_id = db.relationship('User', back_populates='posts')
     user_id = db.Column(db.Integer, db.ForeignKey('blog_user.id', ondelete='CASCADE'), nullable=False)
     title = db.Column(db.String(256), nullable=False)
     title_slug = db.Column(db.String(256), nullable=False, unique=True)
     content = db.Column(db.Text, nullable=False)
+    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    
     def __repr__(self):
         return f"<Post: {self.title}>"
     def save(self):
@@ -46,9 +49,16 @@ class Post(db.Model):
                     db.session.add(self)
     def public_url(self):
         return url_for('public.show_post', slug=self.title_slug)
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
     @staticmethod
     def get_by_slug(slug):
         return Post.query.filter_by(title_slug=slug).first()
     @staticmethod
     def get_all():
         return Post.query.all()
+    @staticmethod
+    def get_by_id(id):
+        return Post.query.get(id)
+    

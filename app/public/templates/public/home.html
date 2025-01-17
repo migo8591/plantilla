@@ -13,12 +13,15 @@
 
     <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
     <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
-    <ul class="content-posts">
+    <ol class="content-posts">
         {% for post in posts %}
-        <li>
+        <!-- <li>
             <a href="{{post.public_url()}}" class="special">{{post.id}}. {{ post.title }}</a>
+        </li> -->
+        <li>
+            <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
         </li>
         {% endfor %}
-    </ul>
+    </ol>
 </section>
 {% endblock %}

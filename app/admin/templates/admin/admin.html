@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Miniblog | Admin{% endblock %}
+
+
+{% block content %}
+<section class="content">
+
+<h2 class="title">Admin</h2>
+
+<div>
+    <ul>
+        <li><a class="special" href="{{url_for("admin.list_posts")}}">Posts</a></li>
+  
+        <li><a class="special" href="{{url_for("admin.users")}}">Users</a></li>
+    </ul>
+</div>
+
+</section>
+
+
+{% endblock %}

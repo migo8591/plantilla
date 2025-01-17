@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{%block customCSS%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin/users.css')}}">
+{%endblock%}
+
+{% block content%}
+<section class="content">
+    <h2>Detalle del usuario</h2>
+    <div>
+        <p><b>Nombre: </b> {{usuario.nombre}} <b>Apellido: </b> {{usuario.apellido}} </p>
+    </div>
+    <div>
+        <p><b>Email: </b> {{usuario.correo}}</p>
+    </div>
+    <form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
+        <div>
+            {{form.is_admin.label}}
+            {{form.is_admin}}<br>
+            {% for error in form.is_admin.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{form.submit()}}
+        </div>
+    </form>
+    <!-- <form action="">
+
+    </form> -->
+    <img src="{{url_for('static',filename='admin/controlar.png')}}" alt="">
+</section>
+{% endblock %}

@@ -33,8 +33,8 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True  # Activa el modo depuración
     SQLALCHEMY_DATABASE_URI = "sqlite:///blog_educativoII.db"
+    TESTING=True
     ENV="testing"
-    # TESTING=True
     
 config = {
     'development': DevelopmentConfig,

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{%block customCSS%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin/admin-post-view.css')}}">
+{%endblock%}
+
+{% block content %}
+<section class="content">
+    <h2 class="title">{{post.title}}</h2>
+    <div class="content-post">
+        <table>
+            <tr>
+                <th>Titulo</th>
+                <th>Usuario</th>
+                <th>Fecha de creacion</th>
+                <th>Eliminar</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>{{post.title}}</td>
+                <td>{{post.user.nombre}} {{post.user.apellido}}</td>
+                <td>{{post.date_added}}</td>
+                <td>
+                    <a type="button" href="{{url_for('admin.delete_post', post_id=post.id)}}" class="special">Delete</a>
+                </td>
+                <td><a href="{{url_for("admin.list_posts")}}" class="special">Come back</a></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <p class="content-text">
+        {{ post.content }}
+    </p>
+</section>
+
+
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla con Contador</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tabla con Contador</h2>
+    <table id="miTabla">
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+    </table>
+    <button onclick="agregarFila()">Agregar Fila</button>
+
+    <script>
+        function agregarFila() {
+            var tabla = document.getElementById("miTabla");
+            var fila = tabla.insertRow();
+            var celdaProducto = fila.insertCell(0);
+            var celdaCantidad = fila.insertCell(1);
+            celdaProducto.innerHTML = "Nuevo Producto";
+            celdaCantidad.innerHTML = "0";
+        }
+    </script>
+</body>
+</html> -->

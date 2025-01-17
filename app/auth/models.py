@@ -13,6 +13,7 @@ class Users(db.Model, UserMixin):
     contrasena = db.Column(db.String(200), nullable=False)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
+    posts=db.relationship('Post', backref='user')
     
     
     def set_password(self, contrasena):
@@ -23,6 +24,12 @@ class Users(db.Model, UserMixin):
         if not self.id:
             db.session.add(self)
         db.session.commit()
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    @staticmethod
+    def get_all():
+        return Users.query.all()
     @staticmethod
     def get_by_id(id):
         return Users.query.get(id)

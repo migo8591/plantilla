@@ -23,8 +23,9 @@ def home():
 def aboutus():
     return render_template('public/aboutus.html')
 
-@public.route("/<string:slug>/")
+@public.route("/post/<string:slug>/")
 def show_post(slug):
+    print("Showing a post")
     logger.info("Mostrando un post")
     logger.debug("El slug es: %s", slug)
     post = Post.get_by_slug(slug)
