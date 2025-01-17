@@ -18,8 +18,8 @@
             </tr>
             <tr>
                 <td>{{post.title}}</td>
-                <td>{{post.user_id}}</td>
-                <td>{{post.user_id}}</td>
+                <td>{{post.user.nombre}} {{post.user.apellido}}</td>
+                <td>{{post.date_added}}</td>
                 <td>
                     <a type="button" href="{{url_for('admin.delete_post', post_id=post.id)}}" class="special">Delete</a>
                 </td>

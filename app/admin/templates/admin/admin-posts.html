@@ -28,9 +28,9 @@
                 <td>
                     <a href="{{url_for('admin.view_post',post_id=post.id)}}" class="special">{{post.title}}</a>
                 </td>
-                <td>{{post.user_id}}</td>
+                <td>{{post.user.nombre}} {{post.user.apellido}}</td>
                 <td>
-                    {{post.user_id}}
+                    {{post.date_added}}
                 </td>
             </tr>
             {% endfor %}

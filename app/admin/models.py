@@ -3,15 +3,18 @@ from flask import url_for
 from extensions import db
 from sqlalchemy.exc import IntegrityError
 from colorama import Fore, Back, Style, init
+from datetime import datetime
+
 
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
-    # user_id = db.relationship('User', back_populates='posts')
     user_id = db.Column(db.Integer, db.ForeignKey('blog_user.id', ondelete='CASCADE'), nullable=False)
     title = db.Column(db.String(256), nullable=False)
     title_slug = db.Column(db.String(256), nullable=False, unique=True)
     content = db.Column(db.Text, nullable=False)
+    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    
     def __repr__(self):
         return f"<Post: {self.title}>"
     def save(self):

@@ -36,10 +36,10 @@
     margin: 0;
     padding: 0;
 }
-.menu li{
+.menu-li{
     padding: 0 15px;
 }
-.menu a, .welcome{
+.menu a {
     color: var(--nav-links-color);
     font-size: 16px;
     font-weight: 700;
@@ -47,11 +47,30 @@
     text-transform: uppercase;
 }
 .menu-user{
-    color: var(--title-text-color);
+    color: var(--primary-color);
     font-size: 16px;
     font-weight: 700;
     line-height: 50px;
-    text-transform: uppercase;
+    padding: 0;
+
+}
+.menu-name{
+    color: wheat;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 50px;
+    padding: 0;
+
+}
+
+.menu-split{
+    color: red;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 50px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10px;
 
 }
 .open-menu, .close-menu{
