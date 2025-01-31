@@ -2,13 +2,53 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
+{% block customCSS %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/public.css')}}">
+{% endblock %}
+
+
+
 {% block content %}
 <section class="content">
-    <h2 class="title">{{post.title}}</h2>
-    <p class="content-text">
-        {{ post.content }}
-    </p>
+    {% for message in get_flashed_messages() %}
+    {{ message }}
+    {% endfor %}
+    <article class="content-article">
+        <div class="article-title">
+            <h3 class="post-title">{{post.title}}</h3>
+            <div class="post-title-border"></div>
+            <div class="post-published">
+                <span class="published-parram">
+                    <b>Escrito por: </b> {{post.user.nombre | safe}} {{post.user.apellido | safe}}
+                </span>
+                <span class="published-parram">
+                    <b>Publicado: </b>{{post.date_added | safe}}</span>
+            </div>
+        </div>
+        
+        {{ post.content | safe }}
+        {% if current_user.is_authenticated %}
+            {% if post.user.id == current_user.id %}
+            <div>
+                <a type="button" class="postView-submit" href="{{url_for('admin.editPost', post_id=post.id)}}">
+                    Editar
+                </a>
+            </div>
+            {% endif %}
+        {% endif %}
+    </article>
+    <article class="content-comments">
+        <div class="comments-subtitle">
+            <h3 class="subtitle">Comments</h3>
+            <div class="subtitle-border"></div>
+        </div>
+        <h3 class="content-comments-name">Miguel Muñoz</h3>
+        <p class="content-comments-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        
+    </article>
+
 </section>
+
 {% endblock %}
 
 <!-- Formas de respectar espacios en blanco en html

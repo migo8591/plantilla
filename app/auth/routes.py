@@ -83,10 +83,9 @@ def login():
 
 
 
-# @auth.route('/login/', methods=['GET','POST'])
-# def login():
-#     form=LoginForm()
-#     return render_template('auth/login.html', form=form)
+@auth.route('/profile/')
+def profile():
+    return render_template('auth/profile.html')
 
 @auth.route("/logout")
 def logout():

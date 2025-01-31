@@ -10,6 +10,9 @@ from .admin import admin_bp
 from extensions import db
 from app.auth.models import Users
 from flask_migrate import Migrate
+from flask_ckeditor import CKEditor # type: ignore
+
+ckeditor = CKEditor()
 
 init(autoreset=True)
 migrate = Migrate()
@@ -17,6 +20,9 @@ migrate = Migrate()
 def create_app(config_class):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    app.config['CKEDITOR_PKG_TYPE']='full'
+    ckeditor.init_app(app)
+    
     
      # Load the configuration from the instance folder
     if app.config.get('TESTING', False):

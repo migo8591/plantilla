@@ -10,3 +10,10 @@ function toggleMenu(){
 
 openMenuBtn.addEventListener("click",toggleMenu);
 closeMenuBtn.addEventListener("click",toggleMenu);
+
+
+
+function getArticleContent(){
+    var content = CKEDITOR.instance['content-id']
+    return content.getData()
+}
