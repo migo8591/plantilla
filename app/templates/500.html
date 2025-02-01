@@ -2,8 +2,10 @@
 
 {% block content %}
     <section class="content">
-        <p>
-            Ooops!! La página que buscas no existe xD
-        </p>
+        <div class="content-error">
+            <p>
+                "Oops! Something went wrong. Please go back to the start of the page.<a href="{{url_for('public.home')}}" class="special"> Click here</a>." 
+            </p>
+        </div>
     </section>
 {% endblock %}

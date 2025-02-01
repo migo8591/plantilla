@@ -36,8 +36,10 @@ def show_post(slug):
         # raise NotFound(slug)
     return render_template('public/post_view.html', post=post)
 
-@public.route("/error")
+@public.route("/mistake/")
 def show_error():
     res = 1 / 0
-    # posts = Post.get_all()
-    return render_template("public/index.html")
+    posts = Post.get_all()
+    logger.info("Resulatdo de la division: %s", res)
+    return render_template("public/home.html",posts=posts)
+    # abort(500)

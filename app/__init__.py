@@ -18,15 +18,18 @@ init(autoreset=True)
 migrate = Migrate()
 
 def create_app(config_class):
-    app = Flask(__name__)
+    app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(config_class)
+    # app.config.from_pyfile('config.py', silent=True)
+    if "SQLALCHEMY_DATABASE_URI" not in app.config:
+        raise RuntimeError("Falta la configuración de la base de datos (SQLALCHEMY_DATABASE_URI).")
     app.config['CKEDITOR_PKG_TYPE']='full'
     ckeditor.init_app(app)
     
     
      # Load the configuration from the instance folder
     if app.config.get('TESTING', False):
-        app.config.from_pyfile('config-testing.py', silent=True)
+        app.config.from_pyfile('test_config.py', silent=True)
     else:
         app.config.from_pyfile('config.py', silent=True)
     configure_logging(app)
@@ -49,7 +52,7 @@ def create_app(config_class):
     def load_user(user_id):
         return Users.get_by_id(int(user_id))
     return app
-# ///////////////////////////////////////////////////////////////////////////////////////////
+# //////////////////////////////////////////
 def register_error_handlers(app):
 
     @app.errorhandler(500)
@@ -70,7 +73,7 @@ def configure_logging(app):
 
 
     # Añadimos el logger por defecto a la lista de loggers
-    loggers = [app.logger, logging.getLogger('sqlalchemy')]
+    loggers = [app.logger,]
     handlers = []
 
     # Creamos un manejador para escribir los mensajes por consola
@@ -80,23 +83,31 @@ def configure_logging(app):
     # handlers.append(console_handler) --> desaparece
     
     # Verificamos el entorno desde app.config['ENV'] 
-    env = app.config.get('ENV', 'production') #'production' como calor predeterminado.
+    # env = app.config.get('ENV', 'local') #'production' como calor predeterminado.
     # if env == 'development' or env == 'testing':
-    if env == 'testing':
+    #if env == 'testing':
+    if (app.config['APP_ENV']==app.config['APP_ENV_LOCAL']) or (app.config['APP_ENV']==app.config['APP_ENV_DEVELOPMENT']) or (app.config['APP_ENV']==app.config['APP_ENV_TESTING']) :
         # console_handler.setLevel(logging.INFO)
         console_handler.setLevel(logging.DEBUG)
         handlers.append(console_handler)
-    elif env == 'development':
+    #elif env == 'development':
+    elif  app.config['APP_ENV']==app.config['APP_ENV_STAGING']:
         console_handler.setLevel(logging.INFO)
         handlers.append(console_handler)
-    elif env == 'production':
+    elif app.config['APP_ENV']==app.config['APP_ENV_PRODUCTION']:
         console_handler.setLevel(logging.INFO)
         handlers.append(console_handler)
+    # elif env == 'staging':
+    #     console_handler.setLevel(logging.INFO)
+    #     handlers.append(console_handler)
+    # elif env == 'production':
+    #     console_handler.setLevel(logging.INFO)
+    #     handlers.append(console_handler)
         # envio de correo electrónico en caso de error
         mail_handler = SMTPHandler((app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
                             app.config['DONT_REPLY_FROM_EMAIL'],
                             app.config['ADMINS'],
-                            '[Error][{}] La aplicación falló'.format(env),
+                            '[Error][{}] La aplicación falló'.format(app.config['APP_NAME']),
                             (app.config['MAIL_USERNAME'],
                             app.config['MAIL_PASSWORD']),
                             ())
@@ -110,16 +121,16 @@ def configure_logging(app):
         l.propagate = False
         l.setLevel(logging.DEBUG)
 # --------------------------------
-def configure_color():
-        class ColoredFormatter(logging.Formatter):
-            COLORS = {
-                "DEBUG": Fore.CYAN,
-                "INFO": Fore.GREEN,
-            }
-            def format(self, record):
-                color = self.COLORS.get(record.levelname, "")
-                record.msg = f"{color}{record.msg}{Style.RESET_ALL}"
-                return super().format(record)
+# def configure_color():
+#         class ColoredFormatter(logging.Formatter):
+#             COLORS = {
+#                 "DEBUG": Fore.CYAN,
+#                 "INFO": Fore.GREEN,
+#             }
+#             def format(self, record):
+#                 color = self.COLORS.get(record.levelname, "")
+#                 record.msg = f"{color}{record.msg}{Style.RESET_ALL}"
+#                 return super().format(record)
 def verbose_formatter():
        
     return logging.Formatter(
