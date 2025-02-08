@@ -15,6 +15,7 @@ def home():
     posts = Post.get_all()
     # current_app.logger.info("Posts: %s", posts)
     current_app.logger.info("Mostrando todos los posts")
+    # Usando jerarquia de logs: 
     logger.info("Showing all posts")
     return render_template('public/home.html', posts=posts)
 
