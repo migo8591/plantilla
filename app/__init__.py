@@ -68,97 +68,27 @@ def register_error_handlers(app):
         return render_template('401.html'), 401
 # -----------------------------
 def configure_logging(app):
-    # Eliminamos los posibles manejadores, si existen, del logger por defecto
+    # Eliminamos los posibles manejadores, si existen, del logger por defecto.
     del app.logger.handlers[:]
-
-
     # Añadimos el logger por defecto a la lista de loggers
     loggers = [app.logger,]
     handlers = []
-
-    # Creamos un manejador para escribir los mensajes por consola
+    # Creamos un manejador de consola
     console_handler = logging.StreamHandler()
-    # console_handler.setLevel(logging.DEBUG) --> desaparece
+    console_handler.setLevel(logging.DEBUG)
     console_handler.setFormatter(verbose_formatter())
-    # handlers.append(console_handler) --> desaparece
-    
-    # Verificamos el entorno desde app.config['ENV'] 
-    # env = app.config.get('ENV', 'local') #'production' como calor predeterminado.
-    # if env == 'development' or env == 'testing':
-    #if env == 'testing':
-    if (app.config['APP_ENV']==app.config['APP_ENV_LOCAL']) or (app.config['APP_ENV']==app.config['APP_ENV_DEVELOPMENT']) or (app.config['APP_ENV']==app.config['APP_ENV_TESTING']) :
-        # console_handler.setLevel(logging.INFO)
-        console_handler.setLevel(logging.DEBUG)
-        handlers.append(console_handler)
-    #elif env == 'development':
-    elif  app.config['APP_ENV']==app.config['APP_ENV_STAGING']:
-        console_handler.setLevel(logging.INFO)
-        handlers.append(console_handler)
-    elif app.config['APP_ENV']==app.config['APP_ENV_PRODUCTION']:
-        console_handler.setLevel(logging.INFO)
-        handlers.append(console_handler)
-    # elif env == 'staging':
-    #     console_handler.setLevel(logging.INFO)
-    #     handlers.append(console_handler)
-    # elif env == 'production':
-    #     console_handler.setLevel(logging.INFO)
-    #     handlers.append(console_handler)
-        # envio de correo electrónico en caso de error
-        mail_handler = SMTPHandler((app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
-                            app.config['DONT_REPLY_FROM_EMAIL'],
-                            app.config['ADMINS'],
-                            '[Error][{}] La aplicación falló'.format(app.config['APP_NAME']),
-                            (app.config['MAIL_USERNAME'],
-                            app.config['MAIL_PASSWORD']),
-                            ())
-        mail_handler.setLevel(logging.ERROR)
-        mail_handler.setFormatter(mail_handler_formatter())
-        handlers.append(mail_handler)
+    handlers.append(console_handler)
     # Asociamos cada uno de los handlers a cada uno de los loggers
     for l in loggers:
         for handler in handlers:
             l.addHandler(handler)
         l.propagate = False
         l.setLevel(logging.DEBUG)
-# --------------------------------
-# def configure_color():
-#         class ColoredFormatter(logging.Formatter):
-#             COLORS = {
-#                 "DEBUG": Fore.CYAN,
-#                 "INFO": Fore.GREEN,
-#             }
-#             def format(self, record):
-#                 color = self.COLORS.get(record.levelname, "")
-#                 record.msg = f"{color}{record.msg}{Style.RESET_ALL}"
-#                 return super().format(record)
+
 def verbose_formatter():
        
     return logging.Formatter(
         '[%(asctime)s.%(msecs)d]\t %(levelname)s \t[%(name)s.%(funcName)s:%(lineno)d]\t %(message)s',
         datefmt='%d/%m/%Y %H:%M:%S'
-        # '[%(asctime)s.%(msecs)d]\t %(levelname)s \t[%(name)s.%(funcName)s:%(lineno)d]\t %(message)s',
-        # datefmt='%d/%m/%Y %H:%M:%S'+ str(ColoredFormatter("[%(levelname)s] %(message)s"))
     )
 # --------------------------------------
-def mail_handler_formatter():
-    return logging.Formatter(
-        '''
-            Message type:       %(levelname)s
-            Location:           %(pathname)s:%(lineno)d
-            Module:             %(module)s
-            Function:           %(funcName)s
-            Time:               %(asctime)s.%(msecs)d
-
-            Message:
-
-            %(message)s
-        ''',
-        datefmt='%d/%m/%Y %H:%M:%S'
-    )
-# ==================================================
-# Configuración Colorama
-# ==================================================
-
-
-# def configure_logging(app):
-    

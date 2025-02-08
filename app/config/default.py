@@ -1,7 +1,17 @@
 from os.path import abspath, dirname
+from dotenv import load_dotenv
+import os
 BASE_DIR = dirname(dirname(abspath(__file__)))
 SECRET_KEY = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+load_dotenv()
+user=os.getenv('MYSQL_USER')
+password=os.getenv('MYSQL_PASSWORD')
+host=os.getenv('MYSQL_HOST')
+port=os.getenv('MYSQL_PORT')
+database=os.getenv("MYSQL_DATABASE")
 
 # App environments
 APP_ENV_LOCAL = 'local'
