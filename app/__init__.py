@@ -68,6 +68,7 @@ def register_error_handlers(app):
         return render_template('401.html'), 401
 # -----------------------------
 def configure_logging(app):
+    
     # Eliminamos los posibles manejadores, si existen, del logger por defecto.
     del app.logger.handlers[:]
     # Añadimos el logger por defecto a la lista de loggers
@@ -91,11 +92,27 @@ def configure_logging(app):
             l.addHandler(handler)
         l.propagate = False
         l.setLevel(logging.DEBUG)
-
+# Diccionario de colores para cada nivel de log
+LOG_COLORS = {
+    'DEBUG': Fore.BLUE,
+    'INFO': Fore.GREEN,
+    # 'INFO': Fore.LIGHTRED_EX,
+    'WARNING': Fore.YELLOW,
+    'ERROR': Fore.RED,
+    'CRITICAL': Fore.MAGENTA
+}
+class ColorFormatter(logging.Formatter):
+    """ Formatter personalizado que agrega colores al levelname"""
+    def format(self, record):
+        levelname_color = LOG_COLORS.get(record.levelname, Fore.WHITE) #Obtiene el color segun el nivel.
+        record.levelname = f"{levelname_color}{record.levelname}{Style.RESET_ALL}" #Agrega el color al levelname
+        return super().format(record)
 def verbose_formatter():
-       
-    return logging.Formatter(
-        '[%(asctime)s.%(msecs)d]\t %(levelname)s \t[%(name)s.%(funcName)s:%(lineno)d]\t %(message)s',
+    """Devuelve el formateador con colores"""
+    return ColorFormatter(
+        # '[%(asctime)s.%(msecs)d]\t %(levelname)s \t[%(name)s.%(funcName)s:%(lineno)d]\t %(message)s',
+        # datefmt='%d/%m/%Y %H:%M:%S'
+        '[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
         datefmt='%d/%m/%Y %H:%M:%S'
     )
 # --------------------------------------
