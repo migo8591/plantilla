@@ -75,10 +75,17 @@ def configure_logging(app):
     handlers = []
     # Creamos un manejador de consola
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.DEBUG)
+    # console_handler.setLevel(logging.DEBUG)
     console_handler.setFormatter(verbose_formatter())
-    handlers.append(console_handler)
+    # handlers.append(console_handler)
     # Asociamos cada uno de los handlers a cada uno de los loggers
+    if (app.config['APP_ENV'] == app.config['APP_ENV_LOCAL']) or (app.config['APP_ENV'] == app.config['APP_ENV_TESTING']) or(app.config['APP_ENV']==app.config['APP_ENV_DEVELOPMENT']):
+        console_handler.setLevel(logging.DEBUG)
+        handlers.append(console_handler)
+    elif app.config['APP_ENV'] == app.config['APP_ENV_PRODUCTION']:
+        console_handler.setLevel(logging.INFO)
+        handlers.append(console_handler)
+        
     for l in loggers:
         for handler in handlers:
             l.addHandler(handler)
