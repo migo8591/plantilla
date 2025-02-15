@@ -24,8 +24,8 @@ https://www.w3schools.com/cssref/sel_not.php
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-
-
+    
+    
 }
 /* .formulario-name, label{
     margin-right: 3px;
@@ -34,7 +34,7 @@ https://www.w3schools.com/cssref/sel_not.php
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-
+    
 }
 
 .formulario-password{
@@ -42,5 +42,50 @@ https://www.w3schools.com/cssref/sel_not.php
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    
+}
+/* -------- login  --------  */
+.title-login{
+    margin-bottom: 50px;
+}
+.container-formulario{
+    /* border:3px dotted red; */
+    border-radius:20px;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:400px;
+    padding: 30px;
+    margin: 0 auto;
 
+}
+
+.formulario-login input{
+    border-radius: 10px;
+}
+.formulario-login label{
+    display:block;
+    margin: 5px 0 5px 0;
+}
+.formulario-login-remember{
+    display:flex;
+    /* justify-content: stretch; */
+}
+.formulario-login-remember label{
+    padding-left: 10px;
+}
+.formulario-login-submit input{
+    width: 100%;
+    padding: 10px;
+    background-color: #49ab4c;
+    color:#fff;
+    border-radius:4px;
+}
+.formulario-login-submit input:hover{
+    background-color: #237aeb;
+}
+.formulario-login-registrate{
+    margin-top: 10px;
 }
