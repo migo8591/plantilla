@@ -148,3 +148,4 @@ def mail_handler_formatter():
     
 # Documentación de Flask sobre logging:   
 # https://flask.palletsprojects.com/en/stable/logging/
+# https://stackoverflow.com/questions/34274968/how-can-i-email-myself-an-error-log-from-flask

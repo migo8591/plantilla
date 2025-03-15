@@ -10,9 +10,18 @@
 
 {% block content %}
 <section class="content">
-    {% for message in get_flashed_messages() %}
+    <!-- {% for message in get_flashed_messages() %}
     {{ message }}
-    {% endfor %}
+    {% endfor %} -->
+    {% with message = get_flashed_messages(with_categories=true) %}
+        {% if message %}
+            {% for category, message in message%}
+            <div class="alert alert-{{category}}">
+                {{message}}
+            </div>
+            {% endfor%}
+        {% endif%}
+    {% endwith %}
     <article class="content-article">
         <div class="article-title">
             <h3 class="post-title">{{post.title}}</h3>

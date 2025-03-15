@@ -17,3 +17,8 @@ function getArticleContent(){
     var content = CKEDITOR.instance['content-id']
     return content.getData()
 }
+
+setTimeout(function() {
+    let alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => alert.style.display = 'none');
+}, 3000);
