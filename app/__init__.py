@@ -1,7 +1,6 @@
 import logging
 from logging.handlers import SMTPHandler
 from colorama import Fore, Style, init
-
 from flask import Flask, render_template
 from flask_login import LoginManager, current_user
 from .public import public
@@ -51,6 +50,8 @@ def create_app(config_class):
     @login_manager.user_loader
     def load_user(user_id):
         return Users.get_by_id(int(user_id))
+    print("El entorno es:",app.config['APP_ENV'])
+    print("El valor de APP_ENV_PRODUCTION es:",app.config['APP_ENV_PRODUCTION'])
     return app
 # //////////////////////////////////////////
 def register_error_handlers(app):
@@ -86,10 +87,18 @@ def configure_logging(app):
     elif app.config['APP_ENV'] == app.config['APP_ENV_PRODUCTION']:
         console_handler.setLevel(logging.INFO)
         handlers.append(console_handler)
-        
-        mail_handler = SMTPHandler((app.config['MAIL_SERVER'], app.config['MAIL_PORT']), app.config['DONT_REPLY_FROM_EMAIL'],app.config['ADMINS'],'[Error][{}] La aplicación falló'.format(app.config['APP_ENV']),(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD']))
+        mail_handler = SMTPHandler((app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
+                                   app.config['DONT_REPLY_FROM_EMAIL'],
+                                   app.config['ADMINS'],
+                                   '[Error][{}] La aplicación falló'.format(app.config['APP_ENV']),
+                                   (app.config['MAIL_USERNAME'],
+                                    app.config['MAIL_PASSWORD']),
+                                   ())
+
         mail_handler.setLevel(logging.ERROR)
         mail_handler.setFormatter(mail_handler_formatter())
+        handlers.append(mail_handler)
+ 
 
         
     for l in loggers:
@@ -136,3 +145,6 @@ def mail_handler_formatter():
         ''',
         datefmt='%d/%m/%Y %H:%M:%S'
     )
+    
+# Documentación de Flask sobre logging:   
+# https://flask.palletsprojects.com/en/stable/logging/

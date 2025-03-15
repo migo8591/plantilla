@@ -18,4 +18,5 @@ from .default import *
 DEBUG = False
 
 APP_ENV = APP_ENV_PRODUCTION
-ENV="production"
+SQLALCHEMY_DATABASE_URI= f"mysql://{user}:{password}@{host}:{port}/{database}"
+# ENV="production"
