@@ -29,9 +29,12 @@
         </table>
     </div>
 
-    <p class="content-text">
+    <!-- <p class="content-text">
         {{ post.content }}
-    </p>
+    </p> -->
+    <article>
+        {{ post.content | safe }}
+    </article>
 </section>
 
 

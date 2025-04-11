@@ -11,5 +11,9 @@ from .default import *
 DEBUG = True
 TESTING = True
 
-ENV="testing"
+# ENV="testing"
 APP_ENV = APP_ENV_TESTING
+
+WTF_CSRF_ENABLED = False
+
+SQLALCHEMY_DATABASE_URI= f"mysql://{user}:{password}@{host}:{port}/{databaseTest}"

@@ -70,6 +70,18 @@ blockquote{
     cursor: pointer;
     float: left;
 }
+.postView-delete{
+    background-color: hsl(0, 95%, 34%);
+    color: white;
+    font-size: 20px;
+    padding: 0.5em 1em;
+    /* margin-top: 10px; */
+    margin-left: 10px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    float: left;
+}
 .postView-submit:hover{
     filter:brightness(130%);
 }

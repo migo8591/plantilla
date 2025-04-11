@@ -2,6 +2,7 @@
     --color-background: rgb(165, 155, 155);
     --theme-color: white;
     --text-color: black;
+    --text-color-ancla: rgb(18, 47, 142);
     --text-color-inverse:white;
     --primary-color: #124f88;
     --_nav-link-color:hsl(37, 93%, 64%);
@@ -36,7 +37,7 @@ body {
 }
 a{
     text-decoration: none;
-    color: var(--text-color)
+    color: var(--text-color-ancla)
 }
 
 .alert {

@@ -42,6 +42,13 @@
                 <a type="button" class="postView-submit" href="{{url_for('admin.editPost', post_id=post.id)}}">
                     Editar
                 </a>
+
+                <a type="button" class="postView-delete" href="{{url_for('admin.delete_post', post_id=post.id)}}">
+                        Eliminar
+                </a>
+                <a type="button" class="postView-delete" href="#">
+                        modal
+                </a>
             </div>
             {% endif %}
         {% endif %}

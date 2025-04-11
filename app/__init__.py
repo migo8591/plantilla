@@ -10,6 +10,7 @@ from extensions import db
 from app.auth.models import Users
 from flask_migrate import Migrate
 from flask_ckeditor import CKEditor # type: ignore
+from datetime import timedelta
 
 ckeditor = CKEditor()
 
@@ -19,6 +20,8 @@ migrate = Migrate()
 def create_app(config_class):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(config_class)
+    app.config['SESSION_PERMANENT'] = True # Indica que la sesión puede expirar
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=10)# Tiempo de expiración
     # app.config.from_pyfile('config.py', silent=True)
     if "SQLALCHEMY_DATABASE_URI" not in app.config:
         raise RuntimeError("Falta la configuración de la base de datos (SQLALCHEMY_DATABASE_URI).")

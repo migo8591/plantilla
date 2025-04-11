@@ -12,6 +12,7 @@ password=os.getenv('MYSQL_PASSWORD')
 host=os.getenv('MYSQL_HOST')
 port=os.getenv('MYSQL_PORT')
 database=os.getenv("MYSQL_DATABASE")
+databaseTest=os.getenv("MYSQL_DATABASE_TEST")
 
 # App environments
 APP_ENV_LOCAL = 'local'
