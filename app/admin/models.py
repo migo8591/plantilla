@@ -46,7 +46,7 @@ class Post(db.Model):
                 count += 1
                 self.title_slug = f"{slugify(self.title)}-{count}"
                 if not self.id:
-                    db.session.add(self)
+                    db.session.add(self)            
     def public_url(self):
         return url_for('public.show_post', slug=self.title_slug)
     def delete(self):
@@ -61,4 +61,8 @@ class Post(db.Model):
     @staticmethod
     def get_by_id(id):
         return Post.query.get(id)
+    @staticmethod
+    def all_paginate(page=1, per_page=20):
+        return Post.query.order_by(Post.date_added.asc()).\
+        paginate(page=page, per_page=per_page, error_out=False)
     

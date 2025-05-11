@@ -12,17 +12,32 @@
     <h2 class="title">Maths Topics</h2>
 
 
-    <ol class="content-posts">
-        {% for post in posts %}
-
+    <ul class="content-posts">
+        {% for post in post_pagination.items %}
         <li>
             <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
         </li>
         {% else %}
         <li>No posts available</li>
         {% endfor %}
-    </ol>
+    </ul>
+    <div class="pagination">
+    {% for page in post_pagination.iter_pages() %}
+        {% if page %}
+            {% if page != post_pagination.page %}
+                <a href="{{url_for('public.home', page=page)}}">{{page}}</a>
+            {% else %}
+            <strong>{{page}}</strong>
+            {% endif %}
+        {% else %}
+            <span class="ellipsis">...</span>
+        {% endif %}
+    {% endfor %}
+    </div>
 </section>
+
+
+
 {% endblock %}
 
 

@@ -54,7 +54,7 @@ def create_app(config_class):
     def load_user(user_id):
         return Users.get_by_id(int(user_id))
     print("El entorno es:",app.config['APP_ENV'])
-    print("El valor de APP_ENV_PRODUCTION es:",app.config['APP_ENV_PRODUCTION'])
+    # print("El valor de APP_ENV_PRODUCTION es:",app.config['APP_ENV_PRODUCTION'])
     return app
 # //////////////////////////////////////////
 def register_error_handlers(app):

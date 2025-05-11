@@ -1,5 +1,5 @@
 import logging
-from flask import abort, render_template, current_app
+from flask import abort, render_template, current_app, request
 from . import public
 from flask_login import login_required
 from app.admin.models import Post
@@ -12,12 +12,12 @@ logger = logging.getLogger(__name__)
 
 @public.route('/')
 def home():
-    posts = Post.get_all()
     # current_app.logger.info("Posts: %s", posts)
     current_app.logger.info("Mostrando todos los posts")
-    # Usando jerarquia de logs: 
     logger.info("Showing all posts")
-    return render_template('public/home.html', posts=posts)
+    page = int(request.args.get('page',1))
+    post_pagination = Post.all_paginate(page, 3)
+    return render_template('public/home.html',  post_pagination=post_pagination)
 
 @public.route('/aboutus/')
 @login_required
