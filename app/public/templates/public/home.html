@@ -11,17 +11,24 @@
 <section class="content">
     <h2 class="title">Maths Topics</h2>
 
-    <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
-    <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
+
     <ol class="content-posts">
         {% for post in posts %}
-        <!-- <li>
-            <a href="{{post.public_url()}}" class="special">{{post.id}}. {{ post.title }}</a>
-        </li> -->
+
         <li>
             <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
         </li>
+        {% else %}
+        <li>No posts available</li>
         {% endfor %}
     </ol>
 </section>
 {% endblock %}
+
+
+        <!-- <li>
+            <a href="{{post.public_url()}}" class="special">{{post.id}}. {{ post.title }}</a>
+        </li> -->
+
+    <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
+    <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
