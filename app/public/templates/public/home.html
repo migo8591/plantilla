@@ -10,17 +10,15 @@
 
 <section class="content">
     <h2 class="title">Maths Topics</h2>
-
-
-    <ul class="content-posts">
+    <p class="content-posts">
         {% for post in post_pagination.items %}
-        <li>
+        <p>
             <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
-        </li>
+        </p>
         {% else %}
         <li>No posts available</li>
         {% endfor %}
-    </ul>
+    </p>
     <div class="pagination">
     {% for page in post_pagination.iter_pages() %}
         {% if page %}
@@ -44,6 +42,10 @@
         <!-- <li>
             <a href="{{post.public_url()}}" class="special">{{post.id}}. {{ post.title }}</a>
         </li> -->
+        
+        <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
+        <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
 
-    <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
-    <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
+
+
+        <!-- https://chatgpt.com/share/682d26e3-d5ac-800d-b27a-60532c7cd7e4 -->
