@@ -1,26 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}
-    {% if form.title.data %}
-        {{ form.title.data }}
-    {% else %}
-        New Post
-    {% endif %}
-{% endblock %}
-
+{% block title %}Edit: {{ post.title }}{% endblock %}
 
 {% block customCSS %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/admin.css')}}">
 {% endblock %}
 
 
-
-
-
-
 {% block content %}
 <section class="content">
-    <h2 class="title">Post</h2>
+    <h2 class="title">Edit: {{post.title}}</h2>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <div>
@@ -48,10 +37,8 @@
             {{ form.submit(class="postForm-submit") }}
         </div>
     </form>
-</section>
 
+</section>
 {{ ckeditor.load() }}
 {{ ckeditor.config(name='content') }}
-
 {% endblock %}
-<!-- <script src="https://cdn.ckeditor.com/0.5.0/standard/ckeditor.js"></script> -->

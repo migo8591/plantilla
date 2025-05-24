@@ -4,3 +4,4 @@ instance/
 .env
 migrations/
 j2logo/
+study/colorama.md

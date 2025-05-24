@@ -2,7 +2,7 @@
 {% block title %}Sign up{% endblock %}
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/auth/signup.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
     {% if error %}
     <p style="color: red">{{ error }}</p>
     {% endif %}
-    <form action="" method="post" novalidate>
+    <form class="" action="" method="post" novalidate>
       {{form.hidden_tag()}}
       <div>
         <div class="formulario-name">

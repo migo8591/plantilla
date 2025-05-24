@@ -1,5 +1,5 @@
 import logging
-from flask import abort, render_template, current_app
+from flask import abort, render_template, current_app, request
 from . import public
 from flask_login import login_required
 from app.admin.models import Post
@@ -12,11 +12,13 @@ logger = logging.getLogger(__name__)
 
 @public.route('/')
 def home():
-    posts = Post.get_all()
     # current_app.logger.info("Posts: %s", posts)
     current_app.logger.info("Mostrando todos los posts")
     logger.info("Showing all posts")
-    return render_template('public/home.html', posts=posts)
+    page = int(request.args.get('page',1))
+    per_page = current_app.config['ITEM_PER_PAGE']
+    post_pagination = Post.all_paginate(page, per_page)
+    return render_template('public/home.html',  post_pagination=post_pagination)
 
 @public.route('/aboutus/')
 @login_required
@@ -36,8 +38,10 @@ def show_post(slug):
         # raise NotFound(slug)
     return render_template('public/post_view.html', post=post)
 
-@public.route("/error")
+@public.route("/mistake/")
 def show_error():
     res = 1 / 0
-    # posts = Post.get_all()
-    return render_template("public/index.html")
+    posts = Post.get_all()
+    logger.info("Resulatdo de la division: %s", res)
+    return render_template("public/home.html",posts=posts)
+    # abort(500)

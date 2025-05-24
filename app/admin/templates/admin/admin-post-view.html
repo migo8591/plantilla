@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{%block customCSS%}
-<link rel="stylesheet" href="{{url_for('static', filename='css/admin/admin-post-view.css')}}">
-{%endblock%}
+{% block customCSS %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin.css')}}">
+{% endblock %}
 
 {% block content %}
 <section class="content">
@@ -29,9 +29,12 @@
         </table>
     </div>
 
-    <p class="content-text">
+    <!-- <p class="content-text">
         {{ post.content }}
-    </p>
+    </p> -->
+    <article>
+        {{ post.content | safe }}
+    </article>
 </section>
 
 

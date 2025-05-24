@@ -27,8 +27,11 @@
             {% else %}
                 {% if current_user.is_admin %}
                     <li>
-                        <span class="menu-user">Welcome, Admin:</span>
-                        <span class="menu-name"> {{current_user.nombre}}</span>
+                        <a href="{{url_for('auth.profile')}}">
+                            <span class="menu-user">Welcome, Admin:</span>
+                            <span class="menu-name"> {{current_user.nombre}}</span>
+                        </a>
+                    </li>
                     <li>
                         <span class="menu-split">|</span>
                     </li>
@@ -37,9 +40,10 @@
                     </li>
                 {% else %}    
                     <li>
-                        <span class="menu-user">Welcome, User: </span>
-                        <span class="menu-name">{{current_user.nombre}}</span>
-                    </li>
+                        <a href="{{url_for('auth.profile')}}">
+                            <span class="menu-user">Welcome, User: </span>
+                            <span class="menu-name">{{current_user.nombre}}</span>
+                        </a>
                     <li>
                         <span class="menu-split">|</span>
                     </li>

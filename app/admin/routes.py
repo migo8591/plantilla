@@ -1,12 +1,14 @@
 import logging
+import bleach
 from colorama import Fore
-from flask import abort, render_template, url_for, redirect
+from flask import abort, render_template, url_for, redirect, flash
 from . import admin_bp
 from app.auth.models import Users
 from .forms import PostForm, UserAdminForm
 from app.admin.models import Post
 from flask_login import current_user, login_required
 from app.auth.decorators import admin_required
+from flask_ckeditor import CKEditor, CKEditorField
 
 logger = logging.getLogger(__name__)
 
@@ -34,12 +36,28 @@ def postform(post_id):
     if form.validate_on_submit():
         titulo = form.title.data
         titulo_slug = form.title_slug.data
-        contenido = form.content.data
+        
+                # Configuración de bleach
+        allowed_tags = ['p', 'b', 'i', 'u', 'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'em', 'strong',]
+        allowed_attributes = {
+            'a': ['href', 'title'],
+            'img': ['src', 'alt']
+        }
+        
+
+        contenido = bleach.clean(
+            form.content.data,
+            tags=allowed_tags,
+            attributes=allowed_attributes,
+            strip=True
+        )
+        
+        
         print("Formulario validado", titulo,  contenido)
         post = Post(user_id=current_user.id,title=titulo, title_slug=titulo_slug,content=contenido,)
         print("post.id debe ser None =", post.id)
         post.save()
-        print("post.id no debe ser None ya que si se guardo =", post.id)
+        print("post.id no debe ser None ya que ssi se guardo =", post.id)
         return redirect(url_for('public.home'))
     return render_template('admin/postForm.html', form=form)
 
@@ -51,22 +69,32 @@ def view_post(post_id):
         logger.info(f"El post no {post_id} existe")
         abort(404)
     return render_template("admin/admin-post-view.html", post=post)
-@admin_bp.route("/post/<int:post_id>/", methods=['GET','POST'])
+
+@admin_bp.route("/edit/<int:post_id>/", methods=['GET','POST'])
 def editPost(post_id):
     post=Post.get_by_id(post_id)
     if post is None:
         logger.info(f'El post {Fore.RED}{post_id}{Fore.RESET} no existe')
         abort(404)
     form = PostForm(obj=post)
+    # form2=CKEditorField('content')
     if form.validate_on_submit():
         #Actualiza los campos del post existente
         post.title = form.title.data
         post.content= form.content.data
         post.save()
         logger.info(f'{Fore.YELLOW} Editando el post numero{Fore.RESET} {Fore.RED}{post_id}{Fore.RESET}')
-        return redirect(url_for("public.home"))
-    return render_template("admin/postForm.html", form=form, post=editPost)
+        flash("Post updated successfully", "success")     
+        return redirect(url_for("public.show_post", slug=post.title_slug))
+    # return render_template("admin/postForm.html", form=form, post=editPost)
+    else:
+        form.title.data=post.title
+        form.content.data = post.content
+        return render_template("admin/edit_post.html", post=post, form=form)
 
+# @admin_bp.route("/post/edit/<int:post_id>/")
+# def edit_post(post_id):
+    
 
 @admin_bp.route("/post/delete/<int:post_id>/")
 @login_required

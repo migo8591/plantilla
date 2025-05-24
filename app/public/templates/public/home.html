@@ -3,25 +3,49 @@
 {% block title %}Home{% endblock %}
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/public/home.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/public.css')}}">
 {% endblock %}
 
 {% block content %}
 
 <section class="content">
     <h2 class="title">Maths Topics</h2>
+    <p class="content-posts">
+        {% for post in post_pagination.items %}
+        <p>
+            <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
+        </p>
+        {% else %}
+        <li>No posts available</li>
+        {% endfor %}
+    </p>
+    <div class="pagination">
+    {% for page in post_pagination.iter_pages() %}
+        {% if page %}
+            {% if page != post_pagination.page %}
+                <a href="{{url_for('public.home', page=page)}}">{{page}}</a>
+            {% else %}
+            <strong>{{page}}</strong>
+            {% endif %}
+        {% else %}
+            <span class="ellipsis">...</span>
+        {% endif %}
+    {% endfor %}
+    </div>
+</section>
 
-    <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
-    <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
-    <ol class="content-posts">
-        {% for post in posts %}
+
+
+{% endblock %}
+
+
         <!-- <li>
             <a href="{{post.public_url()}}" class="special">{{post.id}}. {{ post.title }}</a>
         </li> -->
-        <li>
-            <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
-        </li>
-        {% endfor %}
-    </ol>
-</section>
-{% endblock %}
+        
+        <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
+        <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
+
+
+
+        <!-- https://chatgpt.com/share/682d26e3-d5ac-800d-b27a-60532c7cd7e4 -->
