@@ -11,7 +11,7 @@ from app.auth.models import Users
 from flask_migrate import Migrate
 from flask_ckeditor import CKEditor # type: ignore
 from datetime import timedelta
-from flask_mail import Mail # type: ignore
+from flask_mail import Mail, Message # type: ignore 
 
 ckeditor = CKEditor()
 
@@ -45,6 +45,7 @@ def create_app(config_class):
     app.register_blueprint(admin_bp)
     db.init_app(app)
     migrate.init_app(app, db)
+    mail.init_app(app)
     with app.app_context():
         db.create_all()
     login_manager = LoginManager()
@@ -150,7 +151,21 @@ def mail_handler_formatter():
         ''',
         datefmt='%d/%m/%Y %H:%M:%S'
     )
+# --------------------------------------
+msg = Message("Hola",
+              sender="(app.config['MAIL_SERVER']",
+              recipients = ["mcatedral24@yahoo.com"]
+              )
+msg.body = "Welcome a my website"
+msg.html = "<p>Welcome to blog enseñanza de la matemática en CR"
+mail.send(msg)
     
 # Documentación de Flask sobre logging:   
 # https://flask.palletsprojects.com/en/stable/logging/
 # https://stackoverflow.com/questions/34274968/how-can-i-email-myself-an-error-log-from-flaskconsole.log()
+
+
+# https://github.com/migo8591/plantilla/tree/master
+# https://flask-mail.readthedocs.io/en/latest/
+# https://j2logo.com/tutorial-flask-leccion-14-enviar-emails-con-flask/
+# https://chatgpt.com/share/683ad0c6-4bd4-800d-9350-775cc7e150cd
