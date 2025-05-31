@@ -163,3 +163,9 @@ mail.send(msg)
 # Documentación de Flask sobre logging:   
 # https://flask.palletsprojects.com/en/stable/logging/
 # https://stackoverflow.com/questions/34274968/how-can-i-email-myself-an-error-log-from-flaskconsole.log()
+
+
+# https://github.com/migo8591/plantilla/tree/master
+# https://flask-mail.readthedocs.io/en/latest/
+# https://j2logo.com/tutorial-flask-leccion-14-enviar-emails-con-flask/
+# https://chatgpt.com/share/683ad0c6-4bd4-800d-9350-775cc7e150cd

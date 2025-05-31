@@ -4,7 +4,7 @@ from smtplib import SMTPException
 from threading import Thread
 
 from flask import current_app
-from flask_mail import Message #type: ignore
+from flask_mail import Message  # type: ignore
 
 from app import mail
 
