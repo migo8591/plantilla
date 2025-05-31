@@ -26,11 +26,11 @@ APP_ENV_PRODUCTION = 'production'
 ...
 
 # Configuración del email
-MAIL_SERVER = 'smtp.gmail.com'
-MAIL_PORT = 587
-MAIL_USERNAME = 'mcatedral24@gmail.com'
-MAIL_PASSWORD = 'gfcz potg hmzl olmk'
-DONT_REPLY_FROM_EMAIL = 'mcatedral24@gmail.com'
-ADMINS = ('mcatedral24@yahoo.com' )
-MAIL_USE_TLS = True
-MAIL_DEBUG = False
+MAIL_SERVER = os.getenv('MY_MYSQL_USER')
+MAIL_PORT = os.getenv('MY_MYSQL_USER')
+MAIL_USERNAME = os.getenv('MY_MAIL_USERNAME')
+MAIL_PASSWORD = os.getenv('MY_MAIL_PASSWORD')
+DONT_REPLY_FROM_EMAIL = os.getenv('MY_DONT_REPLY_FROM_EMAIL')
+ADMINS = os.getenv('MY_ADMINS ')
+MAIL_USE_TLS = os.getenv('MY_MAIL_USE_TLS')
+MAIL_DEBUG = os.getenv('MY_MAIL_DEBUG')
