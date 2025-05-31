@@ -6,7 +6,7 @@ from flask_login import LoginManager, current_user
 from .public import public
 from .auth import auth
 from .admin import admin_bp
-from extensions import db
+from extensions import db, mail
 from app.auth.models import Users
 from flask_migrate import Migrate
 from flask_ckeditor import CKEditor # type: ignore
@@ -17,7 +17,7 @@ ckeditor = CKEditor()
 
 init(autoreset=True)
 migrate = Migrate()
-mail = Mail() 
+
 
 def create_app(config_class):
     app = Flask(__name__, instance_relative_config=True)
@@ -152,13 +152,13 @@ def mail_handler_formatter():
         datefmt='%d/%m/%Y %H:%M:%S'
     )
 # --------------------------------------
-msg = Message("Hola",
-              sender="(app.config['MAIL_SERVER']",
-              recipients = ["mcatedral24@yahoo.com"]
-              )
-msg.body = "Welcome a my website"
-msg.html = "<p>Welcome to blog enseñanza de la matemática en CR"
-mail.send(msg)
+# msg = Message("Hola",
+#               sender="(app.config['MAIL_SERVER']",
+#               recipients = ["mcatedral24@yahoo.com"]
+#               )
+# msg.body = "Welcome a my website"
+# msg.html = "<p>Welcome to blog enseñanza de la matemática en CR"
+# mail.send(msg)
     
 # Documentación de Flask sobre logging:   
 # https://flask.palletsprojects.com/en/stable/logging/
