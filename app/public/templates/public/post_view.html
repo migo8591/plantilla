@@ -31,7 +31,7 @@
                     <b>Escrito por: </b> {{post.user.nombre | safe}} {{post.user.apellido | safe}}
                 </span>
                 <span class="published-parram">
-                    <b>Publicado: </b>{{post.date_added | safe}}</span>
+                    <b>Publicado: </b>{{post.date_added | datetime ('full')}}</span>
             </div>
         </div>
         

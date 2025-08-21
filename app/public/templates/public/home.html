@@ -12,15 +12,15 @@
     <h2 class="title">Maths Topics</h2>
 
 
-    <ul class="content-posts">
+    <div class="content-posts">
         {% for post in post_pagination.items %}
-        <li>
+        <p>
             <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
-        </li>
+        </p>
         {% else %}
         <li>No posts available</li>
         {% endfor %}
-    </ul>
+    </div>
     <div class="pagination">
     {% for page in post_pagination.iter_pages() %}
         {% if page %}

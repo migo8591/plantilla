@@ -1,4 +1,5 @@
-from flask import abort, render_template, url_for, redirect, flash, request
+from flask import abort, render_template, url_for, redirect, flash, request, current_app
+from app.common.mail import send_email
 from . import auth
 from .forms import SignupForm, LoginForm
 from .models import Users
@@ -37,6 +38,13 @@ def signup():
             user.set_password(password)
             print(user.contrasena)
             user.save()
+            # Dejamos al usuario logueado
+                        # Enviamos un email de bienvenida
+            send_email(subject='Bienvenid@ al miniblog',
+                       sender=current_app.config['DONT_REPLY_FROM_EMAIL'],
+                       recipients=[email, ],
+                       text_body=f'Hola {name}, bienvenid@ al miniblog de Flask',
+                       html_body=f'<p>Hola <strong>{name}</strong>, bienvenid@ al miniblog de Flask</p>')
             # Dejamos al usuario logueado
             login_user(user, remember=True)
             next_page = request.args.get('next', None)
