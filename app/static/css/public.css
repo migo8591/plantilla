@@ -38,6 +38,13 @@
     border-style:solid;
     border-color:var(--title-text-color);
 }
+.post-published{
+    padding: 0;
+    margin:10px 0px;
+    display: inline-block;
+    width: 100%;
+    line-height: 1.4rem;
+}
 .content-article{
     /* background-color: #f9f9f9; */
     max-width: 900px;
@@ -96,3 +103,70 @@ blockquote{
     border-style:solid;
     border-color:var(--subtitle-text-color);
 }
+/* .image-container{
+    max-width: 800px; 
+     margin:auto 
+} */
+.post-image{
+    max-width: 800px; /*Que nunca sea mas grande que el contenedor*/
+    width: auto;
+    height: 400px; /*mantiene la proporción cuando es auto*/
+    display: block; /*quita espacio debajo de la imagen*/
+    margin: 1rem auto;/*centrada con espacio*/
+    border-radius: 12px;/*esquinas suaves*/
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+/* cards */
+.card-container{
+    display: flex; /*Los hijos se colocan una al lado de otra. Esta propiedad crea un contenedor flexible por defecto*/
+    justify-content: center;
+    flex-wrap: wrap; /*Cuando ya no caben en el ancho disponible, automaticamente saltan a la siguiente linea*/
+    margin-top: 100px;
+    /*Importante que las card tengan ancho fijo y margenes*/
+}
+.card{
+    width: 325px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+    margin: 20px;
+}
+.card img{
+    width: 100%;
+    height: auto;
+}
+.card-content{
+    padding: 16px;
+}
+.card-content h3{
+    font-size:28px;
+    margin-bottom: 8px;
+}
+.card-content{
+    color:666;
+    font-size: 15px;
+    line-height: 1.3;
+}
+/* .card-content .btn{
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 16px;
+    color:#fff;
+} */
+.card-link{
+    color:inherit;
+    display: block;
+}
+.hover-shadow{
+    transition: box-shadow .25s ease, transform .25s ease;
+}
+
+.hover-shadow:hover,.hover-shadow:focus-visible{
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    transform: translateY(-2px);
+    outline: none;
+}  

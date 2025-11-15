@@ -5,7 +5,7 @@
     --text-color-ancla: rgb(18, 47, 142);
     --text-color-inverse:white;
     --primary-color: #124f88;
-    --_nav-link-color:hsl(37, 93%, 64%);
+    --_nav-link-color:rgb(159, 47, 74);/*hsl(37, 93%, 64%);*/
     --secondary-color: #F7C331;
     --navbar-shallow-color: #e5e5e5;
     --menu-mobile-bc-color: #3A4460;
@@ -15,7 +15,7 @@
     --body-website-color:white;
     --bc-form-color:#FFB3AE;
     --bc-border-color:#FFC24B;
-    --nav-links-color:#FFC24B;
+    --nav-links-color:#FFC24B;/*#FFC24B;*/
     /* --title-text-color: #0E606B */
     --title-text-color: #F47068;
     --subtitle-text-color: rgb(255,153,25);

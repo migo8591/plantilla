@@ -12,15 +12,35 @@
     <h2 class="title">Maths Topics</h2>
 
 
-    <div class="content-posts">
-        {% for post in post_pagination.items %}
+    <!-- <div class="content-posts">
+        {% for post in post_pagination.items | reverse %}
         <p>
             <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
         </p>
-        {% else %}
-        <li>No posts available</li>
+
         {% endfor %}
-    </div>
+    </div> -->
+     <div class="card-container">
+        {% for post in post_pagination.items  %}
+        <a href="{{url_for('public.show_post', slug=post.title_slug)}}" class="card-link">
+            <div class="card hover-shadow">
+                {% if not post.image_name %}
+                <div class="no-image">No image available</div>
+                {% else %}
+                <img src="{{ url_for('media_posts', filename=post.image_name) }}" alt="que pasa my Lord">
+                {% endif %}
+                <div class="card-content">
+                    <h3 class="">{{post.title}}</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea, temporibus?</p>
+                    <!-- <a href="{{url_for('public.show_post', slug=post.title_slug)}}" class="btn">Leer</a> -->
+                </div>
+            </div>
+        </a>
+        {% else %}
+            <p>There are not post</p>
+        {% endfor %}
+     </div>
+
     <div class="pagination">
     {% for page in post_pagination.iter_pages() %}
         {% if page %}
@@ -47,3 +67,14 @@
 
     <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
     <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
+<!-- 
+* Agregando el primer parrafo a la card - Comentarios nativos o  con plugin de facebook - lightBox - Como centrar la imagen del post - version responsiva -:
+
+* Uniformidad en el diseño de cards: causas y soluciones para mantener el mismo tamaño - solución usando GRIP - Flujo de ramas para desarrollo y despliegue en git:
+https://chatgpt.com/share/68abadef-10b4-8000-80fe-b0ad59750690
+* El diseño de las cards fue tomado desde:
+https://youtu.be/9FNNkzPBFcE?si=HEFUZB0MXP_tAm0X
+* Otra forma de crear paginación-tmb hay otra forma de llamar los datos que no entendí muy biem:
+https://chatgpt.com/share/68abad14-7c70-800d-8560-d77ffe48b02c
+
+ -->

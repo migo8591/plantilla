@@ -21,7 +21,7 @@
 {% block content %}
 <section class="content">
     <h2 class="title">Post</h2>
-    <form action="" method="post" novalidate>
+    <form action="" method="post"  enctype="multipart/form-data" novalidate>
         {{ form.hidden_tag() }}
         <div>
             {{ form.title.label (class="postForm-label") }}
@@ -45,6 +45,10 @@
             {% endfor %}
         </div>
         <div>
+            <label for="postImage">Imagen de cabecera:</label>
+            <input type="file" id="postImage" name="post_image" accept="image/png, image/jpeg">
+        </div>
+        <div>
             {{ form.submit(class="postForm-submit") }}
         </div>
     </form>
@@ -52,6 +56,8 @@
 
 {{ ckeditor.load() }}
 {{ ckeditor.config(name='content') }}
+ <script src="https://cdn.ckeditor.com/4.25.2/standard/ckeditor.js"></script>
+
 
 {% endblock %}
 <!-- <script src="https://cdn.ckeditor.com/0.5.0/standard/ckeditor.js"></script> -->

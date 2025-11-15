@@ -34,7 +34,11 @@
                     <b>Publicado: </b>{{post.date_added | datetime ('full')}}</span>
             </div>
         </div>
-        
+        {% if post.image_name %}
+            <div class="image-container">
+                <img src="{{ url_for('media_posts', filename=post.image_name) }}" alt="que pasa my Lord" class="post-image">
+            </div>
+        {% endif %}
         {{ post.content | safe }}
         {% if current_user.is_authenticated %}
             {% if post.user.id == current_user.id %}
@@ -59,12 +63,14 @@
             <div class="subtitle-border"></div>
         </div>
         <h3 class="content-comments-name">Miguel Muñoz</h3>
-        <p class="content-comments-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        <p class="content-comments-text">Lorem ipsum -dolor sit amet, consectetur adipiscing elit
         
     </article>
 
 </section>
-
+<!-- Para seguir desarrollando:
+Comentarios con o sin facebook - light/text-imagenCentrada-caption-responsive/lightmodo
+https://chatgpt.com/share/68aa6ffa-3704-8000-b7a2-467f81e83b87 -->
 {% endblock %}
 
 <!-- Formas de respectar espacios en blanco en html

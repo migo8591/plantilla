@@ -14,6 +14,7 @@ class Post(db.Model):
     title_slug = db.Column(db.String(256), nullable=False, unique=True)
     content = db.Column(db.Text, nullable=False)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    image_name = db.Column(db.String(256))
     
     def __repr__(self):
         return f"<Post: {self.title}>"
@@ -63,6 +64,5 @@ class Post(db.Model):
         return Post.query.get(id)
     @staticmethod
     def all_paginate(page=1, per_page=20):
-        return Post.query.order_by(Post.date_added.asc()).\
+        return Post.query.order_by(Post.date_added.desc()).\
         paginate(page=page, per_page=per_page, error_out=False)
-    

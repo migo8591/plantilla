@@ -16,7 +16,7 @@ def home():
     current_app.logger.info("Mostrando todos los posts")
     logger.info("Showing all posts")
     page = int(request.args.get('page',1))
-    post_pagination = Post.all_paginate(page, 3)
+    post_pagination = Post.all_paginate(page, 6)
     return render_template('public/home.html',  post_pagination=post_pagination)
 
 @public.route('/aboutus/')

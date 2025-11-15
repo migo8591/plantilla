@@ -1,10 +1,17 @@
-from os.path import abspath, dirname
+from os.path import abspath, dirname, join
 from dotenv import load_dotenv
 import os
 BASE_DIR = dirname(dirname(abspath(__file__)))
+# Media dir
+MEDIA_DIR = join(BASE_DIR, 'media')
+POSTS_IMAGES_DIR = join(MEDIA_DIR, 'posts')
 SECRET_KEY = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+CKEDITOR_PKG_TYPE = 'full'  # o 'standard', según necesites
+CKEDITOR_SERVE_LOCAL = False
+CKEDITOR_HEIGHT = 400
+CKEDITOR_CUSTOM_CDN = 'https://cdn.ckeditor.com/4.25.2/standard/ckeditor.js'
 
 load_dotenv()
 user=os.getenv('MYSQL_USER')
