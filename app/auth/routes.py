@@ -7,7 +7,7 @@ from extensions import db
 from urllib.parse import urlparse
 from flask_login import current_user, login_user, logout_user
 from urllib.parse import urlparse
-
+from app.common.mail import send_email
 
 
 @auth.route('/signup/', methods=['GET','POST'])
@@ -38,6 +38,13 @@ def signup():
             user.set_password(password)
             print(user.contrasena)
             user.save()
+            # Enviamos un email de bienvenida
+            # send_email(subject="Bienvenid@ al miniblog",
+            #            sender=current_app.config['DONT_REPLY_FROM_EMAIL'],
+            #            recipients=[email, ],
+            #            text_body=f'Hola {name}, bienvenid@ al miniblog de Flask',
+            #            html_body=f'<p>Hola <strong>{name}</strong>, bienvenid@ al miniblog de Flask </p>'
+            #            )
             # Dejamos al usuario logueado
                         # Enviamos un email de bienvenida
             send_email(subject='Bienvenid@ al miniblog',
@@ -51,6 +58,8 @@ def signup():
             print(f'Next_page = {next_page}')
             if not next_page or urlparse (next_page).netloc != '':
                 next_page = urlparse('public.index')
+
+            
         flash("User added successfully")
         return redirect(url_for("auth.login"))
     return render_template('auth/signup.html', form=form, error=error)
