@@ -55,6 +55,8 @@ def create_app(config_class):
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
+    login_manager.login_message = "Your sesion have expired. Please log in again"
+    login_manager.login_message_category="info"
     # Custom error handlers
     register_error_handlers(app)
     @login_manager.user_loader

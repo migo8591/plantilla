@@ -1,4 +1,4 @@
-from flask import abort, render_template, url_for, redirect, flash, request, current_app
+from flask import abort, render_template, url_for, redirect, flash, request, current_app, session
 from app.common.mail import send_email
 from . import auth
 from .forms import SignupForm, LoginForm
@@ -76,6 +76,7 @@ def login():
         user = Users.get_by_email(form.email.data)  
         if user is not None and user.check_password(form.password.data):
             login_user(user,remember=form.remember_me.data)
+            session.permanent=True
             next_page = request.args.get('next')
             print(f'Next_page = {next_page}')
             if not next_page or urlparse (next_page).netloc != '':

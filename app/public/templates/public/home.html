@@ -9,6 +9,8 @@
 {% block content %}
 
 <section class="content">
+    {% with message = get_flashed_messages %}
+    {% endwith%}
     <h2 class="title">Maths Topics</h2>
 
 

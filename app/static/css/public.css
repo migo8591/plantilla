@@ -170,3 +170,35 @@ blockquote{
     transform: translateY(-2px);
     outline: none;
 }  
+.group-botton{
+    border: 1px solid blue;
+    width: 300px;
+    height: 50px;
+    /* background: #996161; */
+    padding: 10px;
+    /* max-width: 50ch; */
+}
+
+.modal {
+    /* margin-top: 10px; */
+    padding: 1em;
+    max-width: 50ch;
+    border: 0;
+    box-shadow: 0 0 1em rgb(0 0 0 / .3);
+    width: 400px;
+    height: 120px;
+    
+
+    & > * {
+    margin: 0 0 0.5rem 0;
+  }
+} 
+/* .modal::backdrop{
+    background: linear-gradient(45deg, red, blue);
+    opacity: .4;
+} */
+.modal::backdrop {
+  background: rgb(0 0 0 / 0.8);
+    /* background: linear-gradient(45deg, red, blue);
+    opacity: .4; */
+}
