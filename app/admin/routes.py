@@ -119,7 +119,7 @@ def delete_post(post_id):
         abort(404)
     post.delete()
     logger.info(f'{Fore.YELLOW}El post{Fore.RESET} {Fore.RED}{post.title}{Fore.RESET}')
-    flash("Post delete successfully", "success")
+    flash("Post delete successfully", "danger")
     return redirect(url_for('public.home'))
 
 # --------------------- Users --------------------------#

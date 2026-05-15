@@ -9,7 +9,14 @@
 {% block content %}
 
 <section class="content">
-    {% with message = get_flashed_messages %}
+    {% with  message = get_flashed_messages(with_categories = true)%}
+        {% if message %}
+            {% for category, message in message %}
+            <div class="alert alert-{{category}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
     {% endwith%}
     <h2 class="title">Maths Topics</h2>
 
