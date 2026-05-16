@@ -1,7 +1,8 @@
 import logging
 import bleach
+import os
 from colorama import Fore
-from flask import abort, render_template, url_for, redirect, flash
+from flask import abort, render_template, url_for, redirect, flash, request, current_app
 from . import admin_bp
 from app.auth.models import Users
 from .forms import PostForm, UserAdminForm
@@ -9,6 +10,7 @@ from app.admin.models import Post
 from flask_login import current_user, login_required
 from app.auth.decorators import admin_required
 from flask_ckeditor import CKEditor, CKEditorField
+from werkzeug.utils import secure_filename
 
 logger = logging.getLogger(__name__)
 
@@ -51,11 +53,21 @@ def postform(post_id):
             attributes=allowed_attributes,
             strip=True
         )
-        
-        
+        image_name = None
+        # Comprueba si la petición contiene la parte del fichero
+        if 'post_image' in request.files:
+            file = request.files['post_image']
+            # Si el usuario no selecciona un fichero, el navegador enviara una parte vacia sin nombre de fichero
+            if file.filename:
+                image_name = secure_filename(file.filename)
+                images_dir = current_app.config['POSTS_IMAGES_DIR']
+                os.makedirs(images_dir, exist_ok=True)
+                file_path = os.path.join(images_dir, image_name)
+                file.save(file_path)
         print("Formulario validado", titulo,  contenido)
         post = Post(user_id=current_user.id,title=titulo, title_slug=titulo_slug,content=contenido,)
         print("post.id debe ser None =", post.id)
+        post.image_name = image_name
         post.save()
         print("post.id no debe ser None ya que ssi se guardo =", post.id)
         return redirect(url_for('public.home'))
@@ -107,7 +119,8 @@ def delete_post(post_id):
         abort(404)
     post.delete()
     logger.info(f'{Fore.YELLOW}El post{Fore.RESET} {Fore.RED}{post.title}{Fore.RESET}')
-    return redirect(url_for('admin.list_posts'))
+    flash("Post delete successfully", "danger")
+    return redirect(url_for('public.home'))
 
 # --------------------- Users --------------------------#
 @admin_bp.route('/users/')

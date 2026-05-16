@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+from flask import abort, render_template, url_for, redirect, flash, request, current_app, session
+from app.common.mail import send_email
+=======
 from flask import abort, render_template, url_for, redirect, flash, request, current_app
+>>>>>>> 2fead90dc98d77b57613f64763ea4f4ad1a28b6e
 from . import auth
 from .forms import SignupForm, LoginForm
 from .models import Users
@@ -45,6 +50,13 @@ def signup():
             #            html_body=f'<p>Hola <strong>{name}</strong>, bienvenid@ al miniblog de Flask </p>'
             #            )
             # Dejamos al usuario logueado
+                        # Enviamos un email de bienvenida
+            send_email(subject='Bienvenid@ al miniblog',
+                       sender=current_app.config['DONT_REPLY_FROM_EMAIL'],
+                       recipients=[email, ],
+                       text_body=f'Hola {name}, bienvenid@ al miniblog de Flask',
+                       html_body=f'<p>Hola <strong>{name}</strong>, bienvenid@ al miniblog de Flask</p>')
+            # Dejamos al usuario logueado
             login_user(user, remember=True)
             next_page = request.args.get('next', None)
             print(f'Next_page = {next_page}')
@@ -77,6 +89,7 @@ def login():
         user = Users.get_by_email(form.email.data)  
         if user is not None and user.check_password(form.password.data):
             login_user(user,remember=form.remember_me.data)
+            session.permanent=True
             next_page = request.args.get('next')
             print(f'Next_page = {next_page}')
             if not next_page or urlparse (next_page).netloc != '':

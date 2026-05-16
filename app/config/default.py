@@ -1,10 +1,21 @@
-from os.path import abspath, dirname
+from os.path import abspath, dirname, join
 from dotenv import load_dotenv
 import os
 BASE_DIR = dirname(dirname(abspath(__file__)))
+# Media dir
+MEDIA_DIR = join(BASE_DIR, 'media')
+POSTS_IMAGES_DIR = join(MEDIA_DIR, 'posts')
 SECRET_KEY = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+<<<<<<< HEAD
+
+CKEDITOR_PKG_TYPE = 'full'  # o 'standard', según necesites
+CKEDITOR_SERVE_LOCAL = False
+CKEDITOR_HEIGHT = 400
+CKEDITOR_CUSTOM_CDN = 'https://cdn.ckeditor.com/4.25.2/standard/ckeditor.js'
+=======
 ITEM_PER_PAGE = 3
+>>>>>>> 2fead90dc98d77b57613f64763ea4f4ad1a28b6e
 
 load_dotenv()
 user=os.getenv('MYSQL_USER')
@@ -26,6 +37,16 @@ APP_ENV_PRODUCTION = 'production'
 ...
 
 # Configuración del email
+<<<<<<< HEAD
+MAIL_SERVER = os.getenv('MY_MAIL_SERVER')
+MAIL_PORT = os.getenv('MY_MAIL_PORT')
+MAIL_USERNAME = os.getenv('MY_MAIL_USERNAME')
+MAIL_PASSWORD = os.getenv('MY_MAIL_PASSWORD')
+DONT_REPLY_FROM_EMAIL = os.getenv('MY_DONT_REPLY_FROM_EMAIL')
+ADMINS = os.getenv('MY_ADMINS')
+MAIL_USE_TLS = os.getenv('MY_MAIL_USE_TLS')
+# MAIL_DEBUG = os.getenv('MY_MAIL_DEBUG')
+=======
 MAIL_SERVER = os.getenv('MY_MYSQL_USER')
 MAIL_PORT = os.getenv('MY_MYSQL_USER')
 MAIL_USERNAME = os.getenv('MY_MAIL_USERNAME')
@@ -34,3 +55,4 @@ DONT_REPLY_FROM_EMAIL = os.getenv('MY_DONT_REPLY_FROM_EMAIL')
 ADMINS = os.getenv('MY_ADMINS ')
 MAIL_USE_TLS = os.getenv('MY_MAIL_USE_TLS')
 MAIL_DEBUG = os.getenv('MY_MAIL_DEBUG')
+>>>>>>> 2fead90dc98d77b57613f64763ea4f4ad1a28b6e

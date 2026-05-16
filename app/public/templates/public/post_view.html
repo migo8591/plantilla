@@ -31,25 +31,44 @@
                     <b>Escrito por: </b> {{post.user.nombre | safe}} {{post.user.apellido | safe}}
                 </span>
                 <span class="published-parram">
-                    <b>Publicado: </b>{{post.date_added | safe}}</span>
+                    <b>Publicado: </b>{{post.date_added | datetime ('full')}}</span>
             </div>
         </div>
-        
+        {% if post.image_name %}
+            <div class="image-container">
+                <img src="{{ url_for('media_posts', filename=post.image_name) }}" alt="que pasa my Lord" class="post-image">
+            </div>
+        {% endif %}
         {{ post.content | safe }}
         {% if current_user.is_authenticated %}
             {% if post.user.id == current_user.id %}
-            <div>
+            <div class="group-botton">
                 <a type="button" class="postView-submit" href="{{url_for('admin.editPost', post_id=post.id)}}">
                     Editar
                 </a>
-
-                <a type="button" class="postView-delete" href="{{url_for('admin.delete_post', post_id=post.id)}}">
-                        Eliminar
+                <a type="button" class="postView-delete open-button" href="#">
+                    Eliminar
                 </a>
-                <a type="button" class="postView-delete" href="#">
-                        modal
-                </a>
+            
             </div>
+            <dialog class="modal" id="modal">
+                <h2>Confirmación</h2>
+                <p>Esta seguro que quiere eliminar este post</p>
+                <a type="button" class="postView-delete" href="{{url_for('admin.delete_post', post_id=post.id)}}">
+                    Si
+                </a>
+                <a type="button" class="postView-submit close-button">No</a>
+            </dialog>
+                <!-- <a type="button" class="postView-delete" href="{{url_for('admin.delete_post', post_id=post.id)}}">
+                        Eliminar
+                </a> -->
+
+                <!-- <div class="modal">
+                    <h2>Confirmación</h2>
+                    <p>Esta seguro que quiere eliminar este post</p>
+                </div> -->
+
+
             {% endif %}
         {% endif %}
     </article>
@@ -59,12 +78,14 @@
             <div class="subtitle-border"></div>
         </div>
         <h3 class="content-comments-name">Miguel Muñoz</h3>
-        <p class="content-comments-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        <p class="content-comments-text">Lorem ipsum -dolor sit amet, consectetur adipiscing elit
         
     </article>
 
 </section>
-
+<!-- Para seguir desarrollando:
+Comentarios con o sin facebook - light/text-imagenCentrada-caption-responsive/lightmodo
+https://chatgpt.com/share/68aa6ffa-3704-8000-b7a2-467f81e83b87 -->
 {% endblock %}
 
 <!-- Formas de respectar espacios en blanco en html
