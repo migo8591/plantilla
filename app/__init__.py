@@ -6,19 +6,16 @@ from flask_login import LoginManager, current_user
 from .public import public
 from .auth import auth
 from .admin import admin_bp
-from extensions import db, Mail
+from extensions import db
 from app.auth.models import Users
 from flask_migrate import Migrate
 from flask_ckeditor import CKEditor
 from datetime import timedelta
-from app.common.filters import format_datetime
-# https://chatgpt.com/share/6884b67f-c6a8-800d-b95f-0178e63d5de9
 
 ckeditor = CKEditor()
 
 init(autoreset=True)
 migrate = Migrate()
-mail = Mail()
 
 def create_app(config_class):
     app = Flask(__name__, instance_relative_config=True)
@@ -48,8 +45,6 @@ def create_app(config_class):
     db.init_app(app)
     app.config.setdefault('MAIL_DEBUG', app.debug)
     migrate.init_app(app, db)
-    print(app.config)
-    mail.init_app(app)
     with app.app_context():
         db.create_all()
     login_manager = LoginManager()
@@ -160,7 +155,21 @@ def mail_handler_formatter():
         ''',
         datefmt='%d/%m/%Y %H:%M:%S'
     )
+# --------------------------------------
+# msg = Message("Hola",
+#               sender="(app.config['MAIL_SERVER']",
+#               recipients = ["mcatedral24@yahoo.com"]
+#               )
+# msg.body = "Welcome a my website"
+# msg.html = "<p>Welcome to blog enseñanza de la matemática en CR"
+# mail.send(msg)
     
 # Documentación de Flask sobre logging:   
 # https://flask.palletsprojects.com/en/stable/logging/
-# https://stackoverflow.com/questions/34274968/how-can-i-email-myself-an-error-log-from-flask
+# https://stackoverflow.com/questions/34274968/how-can-i-email-myself-an-error-log-from-flaskconsole.log()
+
+
+# https://github.com/migo8591/plantilla/tree/master
+# https://flask-mail.readthedocs.io/en/latest/
+# https://j2logo.com/tutorial-flask-leccion-14-enviar-emails-con-flask/
+# https://chatgpt.com/share/683ad0c6-4bd4-800d-9350-775cc7e150cd

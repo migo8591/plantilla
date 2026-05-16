@@ -19,6 +19,7 @@
         {% endif %}
     {% endwith%}
     <h2 class="title">Maths Topics</h2>
+<<<<<<< HEAD
 
 
     <!-- <div class="content-posts">
@@ -50,6 +51,17 @@
         {% endfor %}
      </div>
 
+=======
+    <p class="content-posts">
+        {% for post in post_pagination.items %}
+        <p>
+            <a class="special" href="{{url_for('public.show_post', slug=post.title_slug)}}">{{post.title}}</a>
+        </p>
+        {% else %}
+        <li>No posts available</li>
+        {% endfor %}
+    </p>
+>>>>>>> 2fead90dc98d77b57613f64763ea4f4ad1a28b6e
     <div class="pagination">
     {% for page in post_pagination.iter_pages() %}
         {% if page %}
@@ -73,7 +85,11 @@
         <!-- <li>
             <a href="{{post.public_url()}}" class="special">{{post.id}}. {{ post.title }}</a>
         </li> -->
+        
+        <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
+        <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
 
+<<<<<<< HEAD
     <!-- <p>&lt;div&gt;Este texto se mostrará con &lt;/div&gt;</p> -->
     <!-- <p>Este&nbsp;es&nbsp;un&nbsp;ejemplo&nbsp;de&nbsp;espacios&nbsp;no&nbsp;separables.</p> -->
 <!-- 
@@ -87,3 +103,8 @@ https://youtu.be/9FNNkzPBFcE?si=HEFUZB0MXP_tAm0X
 https://chatgpt.com/share/68abad14-7c70-800d-8560-d77ffe48b02c
 
  -->
+=======
+
+
+        <!-- https://chatgpt.com/share/682d26e3-d5ac-800d-b27a-60532c7cd7e4 -->
+>>>>>>> 2fead90dc98d77b57613f64763ea4f4ad1a28b6e
